@@ -1,11 +1,11 @@
 import { motion, useInView, useMotionValue, useMotionTemplate } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import Button from '../common/Button'
-import founder1Img from '../../assets/image.png'
-import founder2Img from '../../assets/image1.png'
+import founder1Img from '../../assets/WhatsApp Image 2026-07-14 at 11.41.45 AM.jpeg'
+import founder2Img from '../../assets/WhatsApp Image 2026-07-14 at 11.41.54 AM.jpeg'
 import founder3Img from '../../assets/image.png'
 import founder4Img from '../../assets/image2.png'
-import founder5Img from '../../assets/image2.png'
+import founder5Img from '../../assets/image1.png'
 
 /**
  * Fonts used by this section — add once, globally (e.g. index.html <head>):

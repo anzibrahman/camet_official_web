@@ -1,124 +1,218 @@
 import { motion } from 'framer-motion'
+import { FaQuoteRight, FaStar } from 'react-icons/fa'
+
+/**
+ * Fonts — same as About / Services, add once globally (index.html <head>):
+ *
+ * <link rel="preconnect" href="https://fonts.googleapis.com">
+ * <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+ */
+
+const fontDisplay = { fontFamily: '"Plus Jakarta Sans", "Poppins", sans-serif' }
+const fontMono = { fontFamily: '"JetBrains Mono", "Menlo", monospace' }
+
+const BG_TOP = '#EEF4FF'
+const BG_BOTTOM = '#FBFCFF'
+const INK = '#1C2033'
+const MUTED = '#5C6178'
+
+const BLUE = '#5B8DEF'
+const VIOLET = '#A78BFA'
+const MINT = '#22B37E'
+const CORAL = '#FB7185'
+const AMBER = '#E8A317'
+
+const testimonials = [
+  {
+    name: 'Rajesh Kumar',
+    company: 'ABC Enterprises',
+    role: 'Managing Director',
+    text: 'CAMTIT Solutions transformed our business operations with their excellent Tally implementation. Their team is professional.',
+    rating: 5,
+    initial: 'RK',
+    color: BLUE,
+  },
+  {
+    name: 'Priya Sharma',
+    company: 'XYZ Retail',
+    role: 'Operations Manager',
+    text: 'Outstanding service! The custom ERP solution they developed has streamlined our entire workflow. Highly recommended.',
+    rating: 5,
+    initial: 'PS',
+    color: VIOLET,
+  },
+  {
+    name: 'Arun Menon',
+    company: 'Tech Innovations',
+    role: 'CEO',
+    text: 'Best software development company in Kerala. They delivered our project on time and within budget. Truly impressive expertise.',
+    rating: 5,
+    initial: 'AM',
+    color: MINT,
+  },
+  {
+    name: 'Sneha Reddy',
+    company: 'Global Logistics',
+    role: 'Director',
+    text: 'Their support team is available 24/7 and resolved our server issues instantly. A trustworthy technology partner.',
+    rating: 5,
+    initial: 'SR',
+    color: CORAL,
+  },
+  {
+    name: 'David John',
+    company: 'Creative Hub',
+    role: 'Founder',
+    text: 'We love the new website and mobile app. The design is modern and the performance is lightning fast. Great job!',
+    rating: 5,
+    initial: 'DJ',
+    color: AMBER,
+  },
+]
+
+// duplicated for a seamless marquee loop
+const infiniteTestimonials = [...testimonials, ...testimonials]
 
 function Testimonials() {
-  const testimonials = [
-    {
-      name: 'Rajesh Kumar',
-      company: 'ABC Enterprises',
-      role: 'Managing Director',
-      text: 'CAMTIT Solutions transformed our business operations with their excellent Tally implementation. Their team is professional.',
-      rating: 5,
-      initial: 'RK'
-    },
-    {
-      name: 'Priya Sharma',
-      company: 'XYZ Retail',
-      role: 'Operations Manager',
-      text: 'Outstanding service! The custom ERP solution they developed has streamlined our entire workflow. Highly recommended.',
-      rating: 5,
-      initial: 'PS'
-    },
-    {
-      name: 'Arun Menon',
-      company: 'Tech Innovations',
-      role: 'CEO',
-      text: 'Best software development company in Kerala. They delivered our project on time and within budget. Truly impressive expertise.',
-      rating: 5,
-      initial: 'AM'
-    },
-    {
-      name: 'Sneha Reddy',
-      company: 'Global Logistics',
-      role: 'Director',
-      text: 'Their support team is available 24/7 and resolved our server issues instantly. A trustworthy technology partner.',
-      rating: 5,
-      initial: 'SR'
-    },
-    {
-      name: 'David John',
-      company: 'Creative Hub',
-      role: 'Founder',
-      text: 'We love the new website and mobile app. The design is modern and the performance is lightning fast. Great job!',
-      rating: 5,
-      initial: 'DJ'
-    }
-  ]
-
-  // Duplicate the list to create a seamless infinite loop
-  const infiniteTestimonials = [...testimonials, ...testimonials]
-
   return (
-    <section className="py-20 bg-slate-50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#4b5563_1px,transparent_1px)] [background-size:20px_20px]"></div>
+    <section
+      className="relative overflow-hidden py-20 md:py-24"
+      style={{ background: `linear-gradient(180deg, ${BG_TOP} 0%, ${BG_BOTTOM} 100%)`, color: INK }}
+    >
+      <style>{`
+        @keyframes camet-marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .camet-marquee-track {
+          animation: camet-marquee 34s linear infinite;
+        }
+        .camet-marquee-wrap:hover .camet-marquee-track {
+          animation-play-state: paused;
+        }
+      `}</style>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12 text-center">
+      {/* soft colorful mesh, consistent with About / Services */}
+      <motion.div
+        aria-hidden="true"
+        animate={{ x: [0, 40, -10, 0], y: [0, -20, 15, 0] }}
+        transition={{ duration: 19, repeat: Infinity, ease: 'easeInOut' }}
+        className="pointer-events-none absolute -top-28 -left-28 w-[440px] h-[440px] rounded-full blur-[110px] z-0"
+        style={{ background: BLUE, opacity: 0.14 }}
+      />
+      <motion.div
+        aria-hidden="true"
+        animate={{ x: [0, -35, 20, 0], y: [0, 25, -15, 0] }}
+        transition={{ duration: 21, repeat: Infinity, ease: 'easeInOut' }}
+        className="pointer-events-none absolute top-[8%] right-[-120px] w-[380px] h-[380px] rounded-full blur-[110px] z-0"
+        style={{ background: VIOLET, opacity: 0.14 }}
+      />
+      <motion.div
+        aria-hidden="true"
+        animate={{ x: [0, 25, -20, 0], y: [0, -15, 20, 0] }}
+        transition={{ duration: 23, repeat: Infinity, ease: 'easeInOut' }}
+        className="pointer-events-none absolute bottom-[-120px] left-[30%] w-[340px] h-[340px] rounded-full blur-[100px] z-0"
+        style={{ background: MINT, opacity: 0.12 }}
+      />
+
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-brand-600 uppercase bg-brand-100 rounded-full">
-            Client Feedback
+          <div className="flex items-center justify-center gap-2 mb-5">
+            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: BLUE }} />
+            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: VIOLET }} />
+            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: CORAL }} />
+            <p style={fontMono} className="text-[11px] uppercase tracking-[0.4em]">
+              <span style={{ color: MUTED }}>Client Feedback</span>
+            </p>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
-            Trusted by Industry Leaders
+
+          <h2
+            style={fontDisplay}
+            className="font-extrabold tracking-tight text-[32px] md:text-[46px] leading-[1.1] mb-4"
+          >
+            Trusted by{' '}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: `linear-gradient(90deg, ${BLUE}, ${VIOLET} 55%, ${CORAL})` }}
+            >
+              Industry Leaders
+            </span>
           </h2>
+
+          <p style={fontDisplay} className="max-w-xl mx-auto text-[14px] md:text-[15px] leading-7 font-normal">
+            <span style={{ color: MUTED }}>
+              Businesses across Kerala rely on us for dependable software, ERP systems, and support that doesn't disappear after go-live.
+            </span>
+          </p>
         </motion.div>
       </div>
 
-      {/* Infinite Scroll Container */}
-      <div className="relative w-full overflow-hidden fade-mask">
-        {/* Gradient Masks for edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50 to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
+      {/* Infinite scroll container */}
+      <div className="camet-marquee-wrap relative w-full overflow-hidden z-20">
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-28 z-10" style={{ background: `linear-gradient(90deg, ${BG_TOP}, transparent)` }} />
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-28 z-10" style={{ background: `linear-gradient(270deg, ${BG_BOTTOM}, transparent)` }} />
 
-        <motion.div
-          className="flex gap-8 w-max px-4"
-          animate={{ x: ["0%", "-50%"] }} // Moves half the total width (because list is doubled)
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 30, // Adjust speed: higher = slower
-          }}
-          whileHover={{ animationPlayState: "paused" }} // Optional: Pause on hover logic needs CSS, simpler here to just let it flow or use onMouseEnter to stop
-        >
+        <div className="camet-marquee-track flex gap-6 w-max px-4">
           {infiniteTestimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={index}
-              className="w-[350px] md:w-[400px] flex-shrink-0 bg-white rounded-2xl p-8 shadow-sm border border-slate-100 relative hover:shadow-xl transition-all duration-300 group"
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="w-[340px] md:w-[380px] flex-shrink-0 relative rounded-[20px] bg-white p-7 md:p-8"
+              style={{
+                border: '1px solid rgba(28,32,51,0.08)',
+                boxShadow: '0 18px 40px -26px rgba(28,32,51,0.18)',
+              }}
             >
-              {/* Quote Icon */}
-              <div className="absolute top-6 right-8 text-6xl text-brand-100 font-serif opacity-50 group-hover:text-brand-200 transition-colors">
-                "
+              {/* top accent bar */}
+              <div
+                className="absolute left-7 right-7 top-0 h-[3px] rounded-full"
+                style={{ backgroundColor: testimonial.color }}
+              />
+
+              <div className="flex items-start justify-between mb-5">
+                <div className="flex gap-1" style={{ color: AMBER }}>
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <FaStar key={i} className="text-[12px]" />
+                  ))}
+                </div>
+                <FaQuoteRight className="text-[20px]" style={{ color: `${testimonial.color}55` }} />
               </div>
 
-              {/* Stars */}
-              <div className="flex mb-6 text-yellow-400 text-sm gap-1">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i}>★</span>
-                ))}
-              </div>
-
-              {/* Text */}
-              <p className="text-slate-600 mb-8 leading-relaxed relative z-10 text-base italic line-clamp-3">
-                "{testimonial.text}"
+              <p style={fontDisplay} className="mb-7 text-[14px] md:text-[15px] leading-relaxed font-normal line-clamp-4">
+                <span style={{ color: INK }}>&ldquo;{testimonial.text}&rdquo;</span>
               </p>
 
-              {/* Author Info */}
-              <div className="flex items-center pt-6 border-t border-slate-50">
-                <div className="w-12 h-12 bg-gradient-to-br from-brand-500 to-brand-700 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg flex-shrink-0">
+              <div
+                className="flex items-center gap-3.5 pt-5"
+                style={{ borderTop: '1px solid rgba(28,32,51,0.08)' }}
+              >
+                <div
+                  className="h-11 w-11 shrink-0 rounded-full flex items-center justify-center text-white font-bold text-[13px]"
+                  style={{ ...fontDisplay, backgroundColor: testimonial.color }}
+                >
                   {testimonial.initial}
                 </div>
-                <div className="ml-4 overflow-hidden">
-                  <p className="font-bold text-slate-900 text-sm truncate">{testimonial.name}</p>
-                  <p className="text-xs font-semibold text-brand-600 truncate">{testimonial.role}</p>
-                  <p className="text-xs text-slate-500 truncate">{testimonial.company}</p>
+                <div className="min-w-0">
+                  <p style={fontDisplay} className="text-[13px] font-bold truncate">
+                    <span style={{ color: INK }}>{testimonial.name}</span>
+                  </p>
+                  <p style={fontMono} className="text-[10px] uppercase tracking-[0.1em] truncate mt-0.5">
+                    <span style={{ color: testimonial.color }}>{testimonial.role}</span>
+                  </p>
+                  <p style={fontDisplay} className="text-[11.5px] truncate mt-0.5">
+                    <span style={{ color: MUTED }}>{testimonial.company}</span>
+                  </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
