@@ -1,168 +1,150 @@
 import { motion } from 'framer-motion'
 import Button from '../common/Button'
-import {
-  FaSlack,
-  FaGoogle,
-  FaRegCircle,
-  FaChartLine,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-} from 'react-icons/fa'
-import { SiZoom, SiClickup } from 'react-icons/si'
-import { Sparkles } from 'lucide-react'
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react'
 
-const floatingNodes = [
-  { icon: SiZoom, className: 'left-[8%] top-[22%]' },
-  { icon: FaSlack, className: 'left-[14%] top-[58%]' },
-  { icon: FaChartLine, className: 'left-[26%] top-[34%]' },
-  { icon: Sparkles, className: 'left-[48%] top-[18%]' },
-  { icon: FaGoogle, className: 'right-[24%] top-[30%]' },
-  { icon: SiClickup, className: 'right-[16%] top-[58%]' },
-  { icon: FaRegCircle, className: 'right-[10%] top-[42%]' },
+const ACCENT = '#4FD1E8'
+
+const SERVICES = ['Tally Solutions', 'Cloud Services', 'Custom Software']
+
+const CONTACTS = [
+  { icon: FaPhoneAlt, label: 'Phone', value: '+91 82818 70533' },
+  { icon: FaEnvelope, label: 'Email', value: 'info@cametitsolutions.com' },
+  { icon: FaMapMarkerAlt, label: 'Location', value: 'Kerala, India' },
 ]
 
-function FloatingNode({ icon: Icon, className }) {
-  return (
-    <motion.div
-      animate={{ y: [0, -8, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-      className={`absolute hidden lg:flex h-11 w-11 items-center justify-center rounded-[18px] border border-[#d8d8d8] bg-white/92 shadow-[0_12px_24px_rgba(0,0,0,0.07)] ${className}`}
-    >
-      <Icon className="text-[15px] text-[#2b2f31]" />
-    </motion.div>
-  )
-}
+const GRAIN =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"
 
 function ContactCard({ icon: Icon, label, value }) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
-      transition={{ duration: 0.25 }}
-      className="group rounded-[20px] border border-white/70 bg-white/70 backdrop-blur-md p-5 shadow-[0_14px_35px_rgba(15,23,42,0.06)]"
+      transition={{ duration: 0.22 }}
+      className="flex items-center gap-3 rounded-[18px] border border-white/15 bg-white/10 p-4 shadow-[0_16px_32px_-22px_rgba(0,0,0,0.5)] backdrop-blur-md transition-colors duration-300 hover:bg-white/[0.14]"
     >
-      <div className="w-11 h-11 mx-auto mb-4 rounded-full bg-[#edf8fb] flex items-center justify-center text-[#2ea3c5] transition-colors duration-300 group-hover:bg-[#2ea3c5] group-hover:text-white">
-        <Icon className="text-[16px]" />
+      <div
+        style={{ background: 'rgba(79,209,232,0.18)', color: ACCENT }}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+      >
+        <Icon className="text-[14px]" />
       </div>
-      <p className="text-[10px] uppercase tracking-[0.24em] text-[#7b807d] text-center mb-2">
-        {label}
-      </p>
-      <p className="text-[14px] md:text-[15px] font-medium text-[#20231f] text-center break-words">
-        {value}
-      </p>
+
+      <div className="min-w-0 text-left">
+        <p className="text-[9px] uppercase tracking-[0.18em] text-white/55">{label}</p>
+        <p className="mt-0.5 truncate text-[13px] font-semibold text-white">{value}</p>
+      </div>
     </motion.div>
   )
 }
 
 function ContactSection() {
   return (
-    <section className="relative overflow-hidden bg-[#e9e9e7] py-14 md:py-16">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(226,232,240,0.75),transparent_28%)]" />
+    <section
+      style={{
+        background:
+          'linear-gradient(135deg, #060A12 0%, #0C1B2E 30%, #123449 58%, #17607A 82%, #1C8AA0 100%)',
+      }}
+      className="relative overflow-hidden py-12 md:py-14 lg:py-16"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
+        style={{ backgroundImage: `url("${GRAIN}")`, backgroundSize: '180px 180px' }}
+      />
 
-      <div className="absolute inset-0 opacity-35 pointer-events-none">
-        <svg
-          className="w-full h-full"
-          viewBox="0 0 1440 900"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M20 180C170 120 240 260 360 220C500 175 580 120 710 180C830 235 900 330 1040 285C1160 245 1230 170 1420 220"
-            stroke="url(#contactLine1)"
-            strokeWidth="14"
-            strokeLinecap="round"
-          />
-          <path
-            d="M40 520C160 470 280 620 420 560C560 500 700 420 830 470C950 518 1030 650 1170 600C1280 560 1340 520 1420 555"
-            stroke="url(#contactLine2)"
-            strokeWidth="10"
-            strokeLinecap="round"
-          />
-          <path
-            d="M120 760C250 690 360 790 510 735C650 685 760 640 900 690C1040 740 1140 830 1360 775"
-            stroke="url(#contactLine3)"
-            strokeWidth="9"
-            strokeLinecap="round"
-          />
-          <defs>
-            <linearGradient id="contactLine1" x1="20" y1="180" x2="1420" y2="220" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#d6d3d1" />
-              <stop offset="0.5" stopColor="#bfbfbf" />
-              <stop offset="1" stopColor="#e7e5e4" />
-            </linearGradient>
-            <linearGradient id="contactLine2" x1="40" y1="520" x2="1420" y2="555" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#e5e7eb" />
-              <stop offset="0.5" stopColor="#cbd5e1" />
-              <stop offset="1" stopColor="#e7e5e4" />
-            </linearGradient>
-            <linearGradient id="contactLine3" x1="120" y1="760" x2="1360" y2="775" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#d4d4d8" />
-              <stop offset="0.5" stopColor="#cbd5e1" />
-              <stop offset="1" stopColor="#f5f5f4" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 left-[6%] h-[320px] w-[320px] rounded-full opacity-25 blur-[110px]"
+        style={{ background: '#2ea3c5' }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[-15%] right-[2%] h-[340px] w-[340px] rounded-full opacity-20 blur-[120px]"
+        style={{ background: '#6C6FE0' }}
+      />
 
-      {floatingNodes.map((node, index) => (
-        <FloatingNode key={index} icon={node.icon} className={node.className} />
-      ))}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08]"
+        viewBox="0 0 1440 800"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path d="M0 140 H260 V260 H520 V140 H760" stroke="white" strokeWidth="1.5" />
+        <path d="M1440 620 H1180 V500 H920 V620 H700" stroke="white" strokeWidth="1.5" />
+        <circle cx="260" cy="140" r="4" fill="white" />
+        <circle cx="520" cy="260" r="4" fill="white" />
+        <circle cx="1180" cy="620" r="4" fill="white" />
+        <circle cx="920" cy="500" r="4" fill="white" />
+      </svg>
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      <div className="relative mx-auto flex min-h-[calc(100dvh-80px)] max-w-5xl flex-col justify-center px-4 text-center sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65 }}
+          transition={{ duration: 0.55 }}
           viewport={{ once: true }}
         >
-          <span className="inline-flex items-center rounded-full border border-[#d5d7d4] bg-white/75 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-[#6c716f]">
-            Let’s Connect
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.22em] text-white/75 backdrop-blur-sm">
+            <span
+              className="h-1.5 w-1.5 rounded-full"
+              style={{ background: ACCENT, boxShadow: '0 0 0 3px rgba(79,209,232,0.25)' }}
+            />
+            Get in touch
           </span>
 
-          <h2 className="mt-4 text-[30px] sm:text-[38px] md:text-[48px] font-light leading-[1.05] text-[#1d201e]">
-            Ready to <span className="text-[#2ea3c5]">transform</span> your business systems?
+          <h2 className="mt-4 text-[28px] font-light leading-[1.08] text-white sm:text-[34px] md:text-[42px]">
+            Let&rsquo;s transform your business{' '}
+            <span style={{ color: ACCENT }} className="font-medium">
+              digitally
+            </span>
           </h2>
 
-          <p className="mt-4 text-[14px] md:text-[16px] leading-7 text-[#666b68] max-w-2xl mx-auto">
-            Partner with a team that builds connected software experiences, reliable integrations,
-            and long-term support for growing businesses.
+          <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-6 text-white/65">
+            Looking for Tally solutions, cloud services, or customized software for your
+            business? Our experts are ready to help you choose the right technology solution.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8 mb-10">
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            {SERVICES.map((s) => (
+              <span
+                key={s}
+                className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-[10px] font-medium text-white/80 backdrop-blur-sm"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <Button
               to="/contact"
-              className="bg-[#20231f] text-white hover:bg-[#2d312d] px-7 py-3 rounded-full text-[11px] uppercase tracking-[0.22em] shadow-lg transition-all hover:-translate-y-1"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0C1B2E] shadow-[0_16px_32px_-14px_rgba(0,0,0,0.4)] transition-all hover:-translate-y-0.5"
             >
-              Start Your Project
+              Book free consultation
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Button>
 
             <Button
               to="/services"
-              className="bg-white/65 border border-[#d5d7d4] text-[#20231f] hover:bg-white px-7 py-3 rounded-full text-[11px] uppercase tracking-[0.22em] transition-all"
+              className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text- transition-all "
             >
-              View All Services
+              Explore services
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <ContactCard
-              icon={FaPhoneAlt}
-              label="Phone"
-              value="+91 82818 70533"
-            />
-            <ContactCard
-              icon={FaEnvelope}
-              label="Email"
-              value="info@cametitsolutions.com"
-            />
-            <ContactCard
-              icon={FaMapMarkerAlt}
-              label="Location"
-              value="Kerala, India"
-            />
+          <div className="mx-auto mt-5 flex items-center justify-center gap-2 text-[12px] leading-5 text-white/60">
+            <CheckCircle2 className="h-4 w-4 shrink-0" style={{ color: ACCENT }} />
+            Free consultation and product demonstration included.
           </div>
         </motion.div>
+
+        <div className="relative mx-auto mt-8 grid w-full max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3">
+          {CONTACTS.map((c) => (
+            <ContactCard key={c.label} {...c} />
+          ))}
+        </div>
       </div>
     </section>
   )

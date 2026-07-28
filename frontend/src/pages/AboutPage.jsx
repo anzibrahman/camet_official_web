@@ -20,7 +20,7 @@ import ceoImg from '../assets/image3.png'
 import coFounder1Img from '../assets/image4.png'
 import coFounder2Img from '../assets/WhatsApp Image 2026-07-14 at 11.41.54 AM.jpeg'
 import coFounder3Img from '../assets/image.png'
-import coFounder4Img from '../assets/image2.png'
+import coFounder4Img from '../assets/ChatGPT Image Jul 21, 2026, 02_14_10 PM.png'
 
 function AboutPage() {
   const values = [
@@ -121,22 +121,22 @@ function AboutPage() {
 
   const coFounders = [
     {
-      name: 'Co-Founder 1',
+      name: 'Muhammed Riyas',
       role: 'Strategy & Business Growth',
       image: coFounder1Img,
     },
     {
-      name: 'Co-Founder 2',
+      name: 'Umesh',
       role: 'Technology & Architecture',
       image: coFounder2Img,
     },
     {
-      name: 'Co-Founder 3',
+      name: 'Sadhakhath',
       role: 'Implementation & Delivery',
       image: coFounder3Img,
     },
     {
-      name: 'Co-Founder 4',
+      name: 'Ebby Manjooran',
       role: 'Support & Client Success',
       image: coFounder4Img,
     },
@@ -185,7 +185,7 @@ function AboutPage() {
                 <Button
                   variant="primary"
                   to="/contact"
-                  className="bg-[#0F766E] px-6 py-2.5 font-semibold text-white hover:bg-[#0b5f59]"
+                  className="bg-[#0F766E] px-6 py-2.5 font-semibold text-bg-[#0b5f59] hover:bg-[#0b5f59]"
                 >
                   Schedule a Meeting
                 </Button>
@@ -297,53 +297,59 @@ function AboutPage() {
       </section>
 
       {/* Expertise + compliance */}
-      <section className="border-t border-slate-200 bg-[#f0f7ff] py-10 md:py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <div>
-              <h2 className="mb-5 text-2xl font-bold text-[#1F2937] md:text-3xl">Experience & Expertise</h2>
-              <div className="grid grid-cols-1 gap-3">
-                {expertise.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ y: -4 }}
-                    className="rounded-[18px] border border-slate-200 bg-white p-4 shadow-sm"
-                  >
-                    <div className="flex items-start gap-3">
-                      <FaCheckCircle className="mt-1 text-[#0F766E]" />
-                      <p className="text-sm leading-6 text-slate-700">{item}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+   <section className="border-t border-slate-200 bg-[#f0f7ff] py-7 md:py-8">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+      <div>
+        <h2 className="mb-3 text-xl font-bold text-[#1F2937] md:text-2xl">
+          Experience & Expertise
+        </h2>
 
-            <div>
-              <h2 className="mb-5 text-2xl font-bold text-[#1F2937] md:text-3xl">Compliance & Process</h2>
-              <div className="grid gap-3">
-                {compliance.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, x: 14 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ x: 4 }}
-                    className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
-                  >
-                    <MdOutlineSecurity className="mt-1 text-[#0F766E]" />
-                    <p className="text-sm text-slate-700">{item}</p>
-                  </motion.div>
-                ))}
+        <div className="grid grid-cols-1 gap-2.5">
+          {expertise.map((item, index) => (
+            <motion.div
+              key={item}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.04 }}
+              whileHover={{ y: -2 }}
+              className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
+            >
+              <div className="flex items-start gap-2.5">
+                <FaCheckCircle className="mt-0.5 shrink-0 text-[15px] text-[#0F766E]" />
+                <p className="text-sm leading-6 text-slate-700">{item}</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </div>
+
+      <div>
+        <h2 className="mb-3 text-xl font-bold text-[#1F2937] md:text-2xl">
+          Compliance & Process
+        </h2>
+
+        <div className="grid gap-2.5">
+          {compliance.map((item, index) => (
+            <motion.div
+              key={item}
+              initial={{ opacity: 0, x: 12 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.04 }}
+              whileHover={{ x: 2 }}
+              className="flex items-start gap-2.5 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
+            >
+              <MdOutlineSecurity className="mt-0.5 shrink-0 text-[16px] text-[#0F766E]" />
+              <p className="text-sm leading-6 text-slate-700">{item}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Partners + stats */}
       <section className="overflow-hidden border-t border-slate-200 bg-[#f6f9fd] py-10 md:py-12">
@@ -424,61 +430,96 @@ function AboutPage() {
               <div className="overflow-hidden rounded-[18px]">
                 <img src={ceoImg} alt="CAMET CEO" className="h-[280px] w-full object-cover" />
               </div>
-              <h3 className="mt-4 text-lg font-bold text-[#1F2937]">CEO Name</h3>
+              <h3 className="mt-4 text-lg font-bold text-[#1F2937]">Shine Mathew</h3>
               <p className="text-sm font-medium text-[#0F766E]">Chief Executive Officer</p>
               <p className="mt-2 text-sm leading-6 text-slate-600">
                 Leading CAMET with a focus on trust, operational value, and business-centered digital transformation.
               </p>
             </motion.div>
 
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0F766E]">
-                Leadership Philosophy
-              </p>
-              <h2 className="mt-2 text-2xl font-bold text-[#1F2937] md:text-3xl">
-                Practical leadership for business growth
-              </h2>
+           <div className="rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_-35px_rgba(15,23,42,0.18)] overflow-hidden">
+  <div className="px-6 py-8 sm:px-8 lg:px-10">
+    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0F766E]">
+      Leadership Philosophy
+    </p>
 
-              <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
-                {ceoPillars.map((pillar, index) => (
-                  <motion.div
-                    key={pillar.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ y: -4 }}
-                    className="rounded-[18px] border border-slate-200 bg-[#F0FDFA] p-4"
-                  >
-                    <h3 className="text-base font-bold text-[#1F2937]">{pillar.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{pillar.description}</p>
-                  </motion.div>
-                ))}
-              </div>
+    <h2 className="mt-2 text-2xl font-bold text-[#1F2937] md:text-3xl">
+      Practical leadership for business growth
+    </h2>
 
-              <div className="mt-6">
-                <h3 className="mb-4 text-xl font-bold text-[#1F2937]">Co-Founders</h3>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                  {coFounders.map((person, index) => (
-                    <motion.div
-                      key={person.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.05 }}
-                      whileHover={{ y: -6 }}
-                      className="rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm"
-                    >
-                      <div className="overflow-hidden rounded-[16px]">
-                        <img src={person.image} alt={person.name} className="h-[200px] w-full object-cover" />
-                      </div>
-                      <h3 className="mt-3 text-base font-bold text-[#1F2937]">{person.name}</h3>
-                      <p className="text-sm text-[#0F766E]">{person.role}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
+    <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
+      Our leadership approach combines practical decision-making, operational discipline,
+      and long-term business thinking to build reliable solutions and strong client relationships.
+    </p>
+
+    <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {ceoPillars.map((pillar, index) => (
+        <motion.div
+          key={pillar.title}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.05 }}
+          whileHover={{ y: -4 }}
+          className="rounded-[20px] border border-slate-200 bg-slate-50 p-5 transition-shadow duration-300 hover:shadow-md"
+        >
+          <div className="mb-3 h-1.5 w-10 rounded-full bg-[#0F766E]" />
+          <h3 className="text-base font-bold text-[#1F2937]">{pillar.title}</h3>
+          <p className="mt-2 text-sm leading-6 text-slate-600">
+            {pillar.description}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+
+  <div className="border-t border-slate-200 bg-[#F8FAFC] px-6 py-8 sm:px-8 lg:px-10">
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          Leadership Team
+        </p>
+        <h3 className="mt-1 text-xl font-bold text-[#1F2937]">Co-Founders</h3>
+      </div>
+
+      <p className="max-w-2xl text-sm leading-6 text-slate-600">
+        A committed founding team with complementary strengths across operations,
+        customer engagement, delivery, and business growth.
+      </p>
+    </div>
+
+    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      {coFounders.map((person, index) => (
+        <motion.div
+          key={person.name}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.05 }}
+          whileHover={{ y: -6 }}
+          className="group rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg"
+        >
+          <div className="overflow-hidden rounded-[16px] bg-slate-100">
+            <img
+              src={person.image}
+              alt={person.name}
+              className="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </div>
+
+          <h3 className="mt-4 text-base font-bold text-[#1F2937]">{person.name}</h3>
+          <p className="mt-1 text-sm font-medium text-[#0F766E]">{person.role}</p>
+
+          {person.description && (
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              {person.description}
+            </p>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
           </div>
         </div>
       </section>
@@ -538,7 +579,7 @@ function AboutPage() {
               <Button
                 variant="primary"
                 to="/contact"
-                className="bg-[#0F766E] px-6 py-2.5 font-semibold text-white hover:bg-[#0b5f59]"
+                className="bg-[#0F766E] px-6 py-2.5 font-semibold text-[#0b5f59] hover:bg-[#0b5f59]"
               >
                 Schedule a Meeting
               </Button>

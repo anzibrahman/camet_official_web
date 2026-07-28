@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
-import { FaQuoteRight, FaStar } from 'react-icons/fa'
+import { useState } from 'react'
+import { FaStar } from 'react-icons/fa'
 
 const fontDisplay = { fontFamily: '"Plus Jakarta Sans", "Poppins", sans-serif' }
 const fontMono = { fontFamily: '"JetBrains Mono", "Menlo", monospace' }
@@ -67,21 +67,24 @@ const testimonials = [
   },
 ].map((t, i) => ({ ...t, color: accents[i % accents.length] }))
 
-function TestimonialCard({ t }) {
+function TestimonialCard({ t, onToggle }) {
   return (
-    <div className="relative w-[260px] sm:w-[280px] lg:w-[300px] flex-shrink-0 pt-5">
-      <div className="relative z-10 mb-[-22px] flex items-end justify-between pl-1 pr-1">
-        <div className="pb-2">
-          <p style={fontDisplay} className="text-[13px] font-extrabold">
+    <div
+      onClick={onToggle}
+      className="testimonial-card relative w-[320px] cursor-pointer sm:w-[340px] lg:w-[360px] flex-shrink-0 pt-8"
+    >
+      <div className="relative z-10 mb-[-30px] flex items-end justify-between pl-1 pr-2">
+        <div className="pb-3">
+          <p style={fontDisplay} className="text-[15px] font-extrabold">
             <span style={{ color: t.color }}>{t.name}</span>
           </p>
-          <p style={fontMono} className="text-[9px] uppercase tracking-[0.08em]">
+          <p style={fontMono} className="text-[10px] uppercase tracking-[0.08em]">
             <span style={{ color: MUTED }}>{t.role}</span>
           </p>
         </div>
 
         <div
-          className="h-12 w-12 shrink-0 overflow-hidden rounded-full ring-2 ring-white shadow-[0_8px_16px_-8px_rgba(11,31,58,0.35)]"
+          className="h-16 w-16 shrink-0 overflow-hidden rounded-full ring-4 ring-white shadow-[0_10px_20px_-8px_rgba(11,31,58,0.35)]"
           style={{ border: `2px solid ${t.color}` }}
         >
           <img src={t.photo} alt={t.name} className="h-full w-full object-cover" />
@@ -89,57 +92,55 @@ function TestimonialCard({ t }) {
       </div>
 
       <div
-        className="relative rounded-xl bg-white p-4 pt-8"
+        className="relative rounded-2xl bg-white p-6 pt-11 transition-transform duration-300 hover:-translate-y-1"
         style={{
           border: '1px solid rgba(11,31,58,0.08)',
-          boxShadow: '0 14px 30px -24px rgba(11,31,58,0.2)',
+          boxShadow: '0 18px 40px -28px rgba(11,31,58,0.2)',
         }}
       >
-        <div className="mb-2 flex gap-1" style={{ color: GOLD }}>
+        <div className="mb-3 flex gap-1" style={{ color: GOLD }}>
           {[...Array(t.rating)].map((_, i) => (
-            <FaStar key={i} className="text-[10px]" />
+            <FaStar key={i} className="text-[11px]" />
           ))}
         </div>
 
-        <p style={fontDisplay} className="text-[12.5px] leading-5 font-normal">
+        <p style={fontDisplay} className="text-[13.5px] leading-relaxed font-normal">
           <span style={{ color: INK }}>{t.text}</span>
         </p>
 
-        <p style={fontDisplay} className="mt-3 text-[10.5px]">
+        <p style={fontDisplay} className="mt-4 text-[11.5px]">
           <span style={{ color: MUTED }}>{t.company}</span>
         </p>
-
-        <span
-          className="absolute -bottom-3 right-4 flex h-7 w-7 items-center justify-center rounded-full text-white shadow-md"
-          style={{ backgroundColor: t.color }}
-        >
-          <FaQuoteRight className="text-[11px]" />
-        </span>
       </div>
     </div>
   )
 }
 
-function MarqueeRow({ items, direction = 'left', duration = 28 }) {
+function MarqueeRow({ items, duration = 28 }) {
+  const [isPaused, setIsPaused] = useState(false)
   const duplicated = [...items, ...items]
+
+  const togglePause = () => {
+    setIsPaused((prev) => !prev)
+  }
 
   return (
     <div className="relative overflow-hidden">
-      <motion.div
-        className="flex w-max gap-4"
-        animate={{
-          x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'],
-        }}
-        transition={{
-          duration,
-          ease: 'linear',
-          repeat: Infinity,
+      <div
+        className="flex w-max gap-6"
+        style={{
+          animation: `marquee-scroll ${duration}s linear infinite`,
+          animationPlayState: isPaused ? 'paused' : 'running',
         }}
       >
         {duplicated.map((t, index) => (
-          <TestimonialCard key={`${t.name}-${index}`} t={t} />
+          <TestimonialCard
+            key={`${t.name}-${index}`}
+            t={t}
+            onToggle={togglePause}
+          />
         ))}
-      </motion.div>
+      </div>
     </div>
   )
 }
@@ -147,14 +148,33 @@ function MarqueeRow({ items, direction = 'left', duration = 28 }) {
 function Testimonials() {
   return (
     <section
-      className="relative overflow-hidden py-12 md:py-14"
+      className="relative overflow-hidden py-20 md:py-24"
       style={{
         background: `linear-gradient(180deg, ${BG_TOP} 0%, ${BG_BOTTOM} 100%)`,
         color: INK,
       }}
     >
+      <style>
+        {`
+          @keyframes marquee-scroll {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .marquee-track {
+              animation: none !important;
+            }
+          }
+        `}
+      </style>
+
       <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.25]"
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.4]"
         style={{
           backgroundImage:
             'linear-gradient(to right, #DCE6F7 1px, transparent 1px), linear-gradient(to bottom, #DCE6F7 1px, transparent 1px)',
@@ -163,39 +183,28 @@ function Testimonials() {
         }}
       />
 
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, 40, -10, 0], y: [0, -20, 15, 0] }}
-        transition={{ duration: 19, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute -top-28 -left-28 z-0 h-[300px] w-[300px] rounded-full blur-[100px]"
-        style={{ background: BLUE, opacity: 0.1 }}
+      <div
+        className="pointer-events-none absolute -top-28 -left-28 z-0 h-[440px] w-[440px] rounded-full blur-[110px]"
+        style={{ background: BLUE, opacity: 0.14 }}
       />
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: [0, -35, 20, 0], y: [0, 25, -15, 0] }}
-        transition={{ duration: 21, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute right-[-80px] top-[8%] z-0 h-[260px] w-[260px] rounded-full blur-[100px]"
-        style={{ background: CYAN, opacity: 0.1 }}
+      <div
+        className="pointer-events-none absolute right-[-120px] top-[8%] z-0 h-[380px] w-[380px] rounded-full blur-[110px]"
+        style={{ background: CYAN, opacity: 0.14 }}
       />
 
-      <div className="relative z-20 mx-auto mb-8 max-w-6xl px-4 text-center sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="mb-3 flex items-center justify-center gap-2">
-            <span className="h-px w-5" style={{ backgroundColor: BLUE }} />
-            <p style={fontMono} className="text-[10px] uppercase tracking-[0.25em]">
+      <div className="relative z-20 mx-auto mb-16 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+        <div>
+          <div className="mb-5 flex items-center justify-center gap-2">
+            <span className="h-px w-6" style={{ backgroundColor: BLUE }} />
+            <p style={fontMono} className="text-[11px] uppercase tracking-[0.32em]">
               <span style={{ color: BLUE }}>Client Feedback</span>
             </p>
-            <span className="h-px w-5" style={{ backgroundColor: BLUE }} />
+            <span className="h-px w-6" style={{ backgroundColor: BLUE }} />
           </div>
 
           <h2
             style={fontDisplay}
-            className="mb-3 text-[24px] font-extrabold leading-tight tracking-tight md:text-[34px]"
+            className="mb-4 text-[32px] font-extrabold leading-[1.1] tracking-tight md:text-[46px]"
           >
             Trusted by{' '}
             <span
@@ -210,18 +219,18 @@ function Testimonials() {
 
           <p
             style={fontDisplay}
-            className="mx-auto max-w-lg text-[13px] font-normal leading-6 md:text-[14px]"
+            className="mx-auto max-w-xl text-[14px] font-normal leading-7 md:text-[15px]"
           >
             <span style={{ color: MUTED }}>
               Businesses across Kerala rely on us for dependable software, ERP systems,
               and support that doesn't disappear after go-live.
             </span>
           </p>
-        </motion.div>
+        </div>
       </div>
 
       <div className="relative z-20">
-        <MarqueeRow items={testimonials} direction="left" duration={28} />
+        <MarqueeRow items={testimonials} duration={28} />
       </div>
     </section>
   )

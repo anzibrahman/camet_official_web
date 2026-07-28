@@ -243,8 +243,7 @@ function ContactPage() {
                   </h2>
 
                   <p className="mt-4 text-sm leading-7 text-white/80 sm:text-base">
-                    Reach out for ERP services, software development, integrations,
-                    process automation, and long-term technical support.
+                  Looking for Tally solutions, cloud services, or customized software for your business? Our experts are ready to help you choose the right technology solution.
                   </p>
 
                   <motion.a
@@ -264,7 +263,7 @@ function ContactPage() {
                     {[
                       `Phone: ${PHONE_DISPLAY}`,
                       `Email: ${EMAIL}`,
-                      'Location: Cheranellur, Ernakulam, Kerala - 682034'
+                      'Location: kalamassery, Ernakulam, Kerala - 682034'
                     ].map((item) => (
                       <motion.div
                         key={item}
