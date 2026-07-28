@@ -3,26 +3,11 @@ import { useEffect, useState } from 'react'
 import logo from '../../assets/White_Logo_HD.png'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  FaChartLine,
   FaBoxOpen,
-  FaPuzzlePiece,
-  FaLaptopCode,
-  FaCogs,
-  FaUserCog,
-  FaDatabase,
-  FaCloud,
-  FaClipboardCheck,
-  FaFileInvoiceDollar,
 } from 'react-icons/fa'
-import {
-  MdOutlineAssessment,
-  MdMiscellaneousServices,
-} from 'react-icons/md'
-import { BsFillGearFill } from 'react-icons/bs'
-import { HiOutlineWrenchScrewdriver } from 'react-icons/hi2'
 import { RiStackFill } from 'react-icons/ri'
 import { products } from '@/data/Product'
-
+import { solutions } from '@/data/solutions'
 
 function Header() {
   const location = useLocation()
@@ -41,6 +26,11 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    setIsMenuOpen(false)
+    setOpenDropdown(null)
+  }, [location.pathname])
+
   const headerFont = {
     fontFamily: '"Montserrat", sans-serif',
     fontWeight: 200,
@@ -57,155 +47,28 @@ function Header() {
     letterSpacing: '0.14em',
   }
 
-  const tallyProductLinks = products.filter((item) =>
-    [
-      'tally-software-service',
-      'tallyprime-server',
-      'tallyprime-cloud-access',
-      'tallyprime-developer',
-      'tallycapital',
-      'shoper9',
-    ].includes(item.slug)
+  const tallyProductLinks = products.filter(
+    (item) => item.category === 'Tally Products'
   )
 
-  const ownProductLinks = products.filter((item) =>
-    ['erp-software', 'hotel-erp-software', 'lab-software'].includes(item.slug)
+  const ownProductLinks = products.filter(
+    (item) => item.category === 'Business Software Products'
   )
 
-  const solutionLinks = [
-    {
-      path: '/solutions',
-      label: 'All Solutions',
-      desc: 'View CAMET solution areas',
-      icon: RiStackFill,
-      iconBg: 'bg-slate-100',
-      iconColor: 'text-slate-900',
-    },
-    {
-      path: '/solutions/accounting-software',
-      label: 'Accounting Software',
-      desc: 'Manage books, ledgers, vouchers, and financial workflows',
-      icon: FaFileInvoiceDollar,
-      iconBg: 'bg-blue-100',
-      iconColor: 'text-blue-700',
-    },
-    {
-      path: '/solutions/billing-software',
-      label: 'Billing Software',
-      desc: 'Fast invoicing, estimates, billing, and collections',
-      icon: MdOutlineAssessment,
-      iconBg: 'bg-green-100',
-      iconColor: 'text-green-700',
-    },
-    {
-      path: '/solutions/bookkeeping-software',
-      label: 'Bookkeeping Software',
-      desc: 'Organize entries, books, reconciliations, and records',
-      icon: FaClipboardCheck,
-      iconBg: 'bg-amber-100',
-      iconColor: 'text-amber-700',
-    },
-    {
-      path: '/solutions/business-management-software',
-      label: 'Business Management Software',
-      desc: 'Control finance, operations, inventory, and reporting together',
-      icon: FaCogs,
-      iconBg: 'bg-slate-100',
-      iconColor: 'text-slate-900',
-    },
-    {
-      path: '/solutions/e-invoicing-software',
-      label: 'e-Invoicing Software',
-      desc: 'Generate compliant e-invoices and simplify invoice workflows',
-      icon: FaCloud,
-      iconBg: 'bg-sky-100',
-      iconColor: 'text-sky-700',
-    },
-    {
-      path: '/solutions/gst-software',
-      label: 'GST Software',
-      desc: 'Handle GST billing, returns, reconciliation, and compliance',
-      icon: FaPuzzlePiece,
-      iconBg: 'bg-rose-100',
-      iconColor: 'text-rose-700',
-    },
-    {
-      path: '/solutions/inventory-management-software',
-      label: 'Inventory Management Software',
-      desc: 'Track stock, warehouses, valuation, and item movement',
-      icon: FaDatabase,
-      iconBg: 'bg-indigo-100',
-      iconColor: 'text-indigo-700',
-    },
-    {
-      path: '/solutions/tally-customization',
-      label: 'Tally Customization',
-      desc: 'Adapt Tally to business workflows',
-      icon: BsFillGearFill,
-      iconBg: 'bg-purple-100',
-      iconColor: 'text-purple-700',
-    },
-    {
-      path: '/solutions/business-automation',
-      label: 'Business Automation',
-      desc: 'Reduce manual business tasks',
-      icon: MdMiscellaneousServices,
-      iconBg: 'bg-teal-100',
-      iconColor: 'text-teal-700',
-    },
-    {
-      path: '/solutions/connected-business',
-      label: 'Connected Workflows',
-      desc: 'Streamline day-to-day operations',
-      icon: HiOutlineWrenchScrewdriver,
-      iconBg: 'bg-yellow-100',
-      iconColor: 'text-yellow-700',
-    },
-    {
-      path: '/solutions/financial-reporting',
-      label: 'Financial Reporting',
-      desc: 'Better analytics and visibility',
-      icon: FaChartLine,
-      iconBg: 'bg-lime-100',
-      iconColor: 'text-lime-700',
-    },
-    {
-      path: '/solutions/software-integration',
-      label: 'Software Integration',
-      desc: 'Connect tools and systems',
-      icon: FaCogs,
-      iconBg: 'bg-rose-100',
-      iconColor: 'text-rose-700',
-    },
-    {
-      path: '/solutions/it-consulting',
-      label: 'IT Consulting',
-      desc: 'Architecture and transformation',
-      icon: FaUserCog,
-      iconBg: 'bg-cyan-100',
-      iconColor: 'text-cyan-700',
-    },
-    {
-      path: '/solutions/custom-software',
-      label: 'Custom Software',
-      desc: 'Tailored web and mobile solutions',
-      icon: FaLaptopCode,
-      iconBg: 'bg-violet-100',
-      iconColor: 'text-violet-700',
-    },
-  ]
+  const solutionLinks = solutions.filter((item) => item.slug !== 'all-solutions')
 
   const allProductLinks = [...tallyProductLinks, ...ownProductLinks]
 
   const isActive = (path) => location.pathname === path
-  const isDropdownActive = (items) => items.some((item) => location.pathname === item.path)
+  const isDropdownActive = (items) =>
+    items.some((item) => location.pathname === item.path)
 
   const getDropdownMeta = () => {
     if (openDropdown === 'products') {
       return {
         title: 'Products',
         subtitle:
-          'Explore Tally products, subscriptions, feature areas, and CAMET software offerings.',
+          'Explore Tally products, subscriptions, deployment options, and CAMET software offerings.',
         icon: FaBoxOpen,
         iconBg: 'bg-slate-100',
         iconColor: 'text-slate-900',
@@ -216,7 +79,7 @@ function Header() {
       return {
         title: 'Solutions',
         subtitle:
-          'Browse accounting, billing, GST, inventory, automation, integration, and CAMET business software solutions.',
+          'Browse accounting, billing, GST, inventory, automation, integration, and industry-specific business software solutions.',
         icon: RiStackFill,
         iconBg: 'bg-slate-100',
         iconColor: 'text-slate-900',
@@ -466,7 +329,7 @@ function Header() {
                             className="mb-3 px-3 text-[10px] uppercase tracking-[0.18em] text-slate-500"
                             style={headerFont}
                           >
-                            Our Products
+                            Tally Products
                           </p>
                           <div className="grid grid-cols-2 gap-2">
                             {tallyProductLinks.map((item) => (
@@ -480,7 +343,7 @@ function Header() {
                             className="mb-3 px-3 text-[10px] uppercase tracking-[0.18em] text-slate-500"
                             style={headerFont}
                           >
-                            Own Products
+                            Business Software Products
                           </p>
                           <div className="grid grid-cols-2 gap-2">
                             {ownProductLinks.map((item) => (
@@ -516,7 +379,6 @@ function Header() {
             <div className="max-h-[80vh] space-y-2 overflow-y-auto p-4">
               <Link
                 to="/"
-                onClick={() => setIsMenuOpen(false)}
                 className={`block rounded-2xl px-4 py-3 text-[13px] ${
                   isActive('/') ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-50'
                 }`}
@@ -527,7 +389,6 @@ function Header() {
 
               <Link
                 to="/about"
-                onClick={() => setIsMenuOpen(false)}
                 className={`block rounded-2xl px-4 py-3 text-[13px] ${
                   isActive('/about') ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-50'
                 }`}
@@ -536,39 +397,12 @@ function Header() {
                 About
               </Link>
 
-              {renderMobileGroup('Our Products', tallyProductLinks)}
-              {renderMobileGroup('Own Products', ownProductLinks)}
-
-              <div
-                className="px-4 pt-3 text-[11px] uppercase tracking-[0.18em] text-slate-500"
-                style={headerFont}
-              >
-                Solutions
-              </div>
-
-              {solutionLinks.map((item) => {
-                const Icon = item.icon
-
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-700 hover:bg-slate-50"
-                  >
-                    <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${item.iconBg}`}>
-                      <Icon className={`text-sm ${item.iconColor}`} />
-                    </div>
-                    <span className="text-[12px] text-slate-900" style={headerFont}>
-                      {item.label}
-                    </span>
-                  </Link>
-                )
-              })}
+              {renderMobileGroup('Tally Products', tallyProductLinks)}
+              {renderMobileGroup('Business Software Products', ownProductLinks)}
+              {renderMobileGroup('Solutions', solutionLinks)}
 
               <Link
                 to="/gallery"
-                onClick={() => setIsMenuOpen(false)}
                 className={`block rounded-2xl px-4 py-3 text-[13px] ${
                   isActive('/gallery') ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-50'
                 }`}
@@ -579,7 +413,6 @@ function Header() {
 
               <Link
                 to="/contact"
-                onClick={() => setIsMenuOpen(false)}
                 className={`block rounded-2xl px-4 py-3 text-[13px] ${
                   isActive('/contact') ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-50'
                 }`}
@@ -590,7 +423,6 @@ function Header() {
 
               <Link
                 to="/contact"
-                onClick={() => setIsMenuOpen(false)}
                 className="block rounded-2xl border border-black/10 bg-slate-900 px-4 py-3 text-center text-[12px] text-white"
                 style={headerButtonFont}
               >

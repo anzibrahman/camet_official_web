@@ -13,6 +13,8 @@ import GalleryPage from './pages/GalleryPage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 
 import SupportPage from './pages/SupportPage'
+import AdminHeroEditor from './pages/AdminHeroEditor'
+import SolutionDetails from './pages/SolutionDetails'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,6 +28,8 @@ const router = createBrowserRouter([
       { path: '/products', element: <ProductsPage /> },
       {path:'/Gallery',element: <GalleryPage/>},
       { path: '/products/:slug', element: <ProductDetailsPage /> },
+      { path: '/solutions/:slug', element: <SolutionDetails /> },
+      { path: '/Admin', element: <AdminHeroEditor /> }, 
     ]
   }
 ])

@@ -2,8 +2,8 @@
 import { Network, UserCheck, TrendingUp, LayoutGrid } from 'lucide-react'
 
 const storyParagraphs = [
-  `Camet creates places and experiences with quiet confidence. Every detail is shaped to feel calm, elevated, and deeply considered, so the final result speaks through atmosphere rather than excess.`,
-  `We believe strong spaces do more than impress. They restore focus, create clarity, and give people the room to think bigger, live better, and move with intention every single day.`,
+  `With years of experience in business software solutions, we specialize in delivering Tally solutions, cloud services, and custom web applications that meet the unique requirements of businesses across various industries.
+Our focus is to understand each client's business processes and provide tailor-made software solutions that simplify operations, enhance productivity, and support business growth`
 ]
 
 const features = [
@@ -46,10 +46,10 @@ const About = () => {
       <div className="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[1.7fr_0.9fr] lg:gap-20">
         <div className="max-w-[700px]">
           <h2 className="font-['Josefin_Sans',sans-serif] text-[2.65rem] font-[300] uppercase leading-[0.98] tracking-[0.32em] text-[#6f8494] sm:text-[3.2rem] lg:text-[3.55rem]">
-            <span className="block">An</span>
-            <span className="block">Invitation</span>
-            <span className="block">To Fly</span>
-            <span className="block">The Sky</span>
+            <span className="block">Your   </span>
+            <span className="block">Trusted</span>
+            <span className="block">Technology</span>
+            <span className="block">Partner</span>
           </h2>
 
           <div className="mt-7 max-w-[640px] space-y-5 font-['Jost',sans-serif] text-[1.14rem] leading-[1.48] font-[400] tracking-[0.01em] text-[#25292f] sm:text-[1.22rem]">
