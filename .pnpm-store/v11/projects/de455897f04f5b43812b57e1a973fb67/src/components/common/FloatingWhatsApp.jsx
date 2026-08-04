@@ -15,7 +15,8 @@ function FloatingWhatsApp() {
       className="pointer-events-none fixed right-4 bottom-20 z-50 flex flex-col items-center gap-2 sm:right-6 sm:bottom-6"
     >
       <motion.a
-        href="tel:+919876543210"
+        href="tel:9072632605
+"
         aria-label="Call CAMET"
         title="Call CAMET"
         whileHover={{ scale: 1.06 }}

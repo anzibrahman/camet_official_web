@@ -8,7 +8,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">CAMET IT Solutions</h3>
+            <h3 className="text-xl font-bold mb-4">CAMET IT SOLUTIONS LLP</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               Leading provider of Tally, Marg ERP solutions and custom software development services.
             </p>
@@ -37,7 +37,7 @@ function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>info@camtitsolutions.com</li>
+              <li>Admin@camet.in</li>
               <li>+91 XXXXX XXXXX</li>
               <li>Kerala, India</li>
             </ul>

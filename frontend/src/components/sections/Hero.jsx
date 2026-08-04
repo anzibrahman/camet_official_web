@@ -55,7 +55,7 @@ function Hero() {
     );
   }
 
-  const badgeText = heroData?.badgeText || "CAMET IT Solutions";
+  const badgeText = heroData?.badgeText || "CAMET IT SOLUTIONS LLP";
   const titleLine1 = heroData?.titleLine1 || "Software that makes";
   const titleLine2 = heroData?.titleLine2 || "business feel";
   const titleHighlight = heroData?.titleHighlight || "elegantly efficient.";
@@ -63,11 +63,11 @@ function Hero() {
     heroData?.subtitle ||
     "TallyPrime, ERP, add-ons, and custom software solutions designed to simplify operations and accelerate your business.";
   const primaryCtaText = heroData?.primaryCtaText || "Schedule a Call";
-  const primaryCtaLink = heroData?.primaryCtaLink || "tel:+919876543210";
+  const primaryCtaLink = heroData?.primaryCtaLink || "tel:9072632605";
   const secondaryCtaText = heroData?.secondaryCtaText || "Chat on WhatsApp";
   const secondaryCtaLink =
     heroData?.secondaryCtaLink ||
-    "https://wa.me/919876543210?text=Hello%20CAMET%20IT%20Solutions%2C%20I%20want%20to%20know%20more%20about%20your%20services.";
+    "https://wa.me/9072632605?text=Hello%20CAMET%20IT%20Solutions%2C%20I%20want%20to%20know%20more%20about%20your%20services.";
   const bannerImageUrl = heroData?.bannerImageUrl || heroImage;
 
   return (

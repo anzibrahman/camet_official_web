@@ -56,7 +56,7 @@ function VideoSection() {
 
           <div className="hidden md:block">
             <a
-              href="#contact"
+              href="/gallery"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2F6FED] transition-colors hover:text-[#0B1F3A]"
             >
               View All Stories

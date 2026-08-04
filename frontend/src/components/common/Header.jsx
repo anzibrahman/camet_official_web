@@ -164,7 +164,7 @@ function Header() {
               <div className="flex items-center justify-center rounded-full bg-white px-3 py-1.5 shadow-md">
                 <img
                   src={logo}
-                  alt="CAMET IT Solutions logo"
+                  alt="CAMET IT SOLUTIONS LLP logo"
                   className="block h-6 w-auto object-contain"
                 />
               </div>
@@ -208,7 +208,15 @@ function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-
+  <Link
+                to="/services"
+                className={`text-[12px] transition-colors ${
+                  isActive('/services') ? 'text-white' : 'text-white/85 hover:text-white'
+                }`}
+                style={headerFont}
+              >
+                Services
+              </Link>
               <button
                 type="button"
                 onMouseEnter={() => setOpenDropdown('solutions')}

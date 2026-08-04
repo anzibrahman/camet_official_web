@@ -257,7 +257,7 @@ function Header() {
             <div className="w-18 h-15 flex items-center justify-center overflow-hidden">
               <img
                 src={logo}
-                alt="CAMET IT Solutions logo"
+                alt="CAMET IT SOLUTIONS LLP logo"
                 className="w-full h-full object-contain"
               />
             </div>

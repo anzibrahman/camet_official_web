@@ -6,6 +6,7 @@ import VideoSection from '../components/sections/VideoSection' // <--- IMPORT TH
 import LogoStrip from '../components/sections/LogoStrip'
 import Testimonials from '../components/sections/Testimonials'
 import ContactSection from '../components/sections/ContactSection'
+import ClientLogos from '@/components/sections/ClientLogos'
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <Services />
       <VideoSection />
       <Testimonials />
+      <ClientLogos />
       <ContactSection />
     </div>
   )

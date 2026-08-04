@@ -123,7 +123,7 @@ function ContactPage() {
                     </div>
                     <div className="ml-4">
                       <h3 className="font-semibold text-slate-900">Email</h3>
-                      <p className="text-slate-600 mt-1">info@camtitsolutions.com</p>
+                      <p className="text-slate-600 mt-1">Admin@camet.in</p>
                     </div>
                   </div>
 

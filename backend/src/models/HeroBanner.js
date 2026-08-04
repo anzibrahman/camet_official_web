@@ -11,7 +11,7 @@ const heroBannerSchema = new mongoose.Schema(
     },
     badgeText: {
       type: String,
-      default: 'CAMET IT Solutions',
+      default: 'CAMET IT SOLUTIONS LLP',
       trim: true,
     },
     titleLine1: {
@@ -41,7 +41,7 @@ const heroBannerSchema = new mongoose.Schema(
     },
     primaryCtaLink: {
       type: String,
-      default: 'tel:+919876543210',
+      default: 'tel:9072632605',
       trim: true,
     },
     secondaryCtaText: {

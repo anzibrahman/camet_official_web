@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Button from '../components/common/Button'
+import api from '@/utils/api'
 
-const PHONE_DISPLAY = '+91 98765 43210'
-const PHONE_TEL = '+919876543210'
-const WHATSAPP_NUMBER = '919876543210'
-const EMAIL = 'info@camtitsolutions.com'
+const PHONE_DISPLAY = '9072632605'
+const PHONE_TEL = '9072632605'
+const WHATSAPP_NUMBER = '9072632605'
+const EMAIL = 'Admin@camet.in'
 
+// Registered office address for the map
+const MAP_EMBED_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.4742857142856!2d76.318956!3d10.063056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08795f5f5f5f5f:0x0!2sA9,+2nd+Floor,+SGR+Tower,+5/215,+Factory+Road,+North+Kalamassery,+Kalamassery,+Kochi,+Kerala+683104!5e0!3m2!1sen!2sin!4v1709886475000!5m2!1sen!2sin';
 function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -52,35 +55,36 @@ function ContactPage() {
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+const handleSubmit = async (e) => {
+  e.preventDefault()
 
-    const validationErrors = validate(formData)
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors)
-      return
-    }
-
-    setIsSubmitting(true)
-    setSubmitStatus('')
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1400))
-      setSubmitStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: ''
-      })
-      setErrors({})
-    } catch (err) {
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-      setTimeout(() => setSubmitStatus(''), 5000)
-    }
+  const validationErrors = validate(formData)
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors)
+    return
   }
+
+  setIsSubmitting(true)
+  setSubmitStatus('')
+
+  try {
+    const response = await api.post('/contact', formData)
+
+    if (response.data.success) {
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', phone: '', message: '' })
+      setErrors({})
+    } else {
+      setSubmitStatus('error')
+    }
+  } catch (err) {
+    console.error('Submit error:', err)
+    setSubmitStatus('error')
+  } finally {
+    setIsSubmitting(false)
+    setTimeout(() => setSubmitStatus(''), 5000)
+  }
+}
 
   const fadeUp = {
     hidden: { opacity: 0, y: 28 },
@@ -165,14 +169,14 @@ function ContactPage() {
               variants={fadeUp}
               className="mb-5 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/85 backdrop-blur-sm"
             >
-              CAMET IT Solutions
+              CAMET IT SOLUTIONS LLP
             </motion.span>
 
             <motion.h1
               variants={fadeUp}
               className="mb-5 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl"
             >
-              Let’s Build Something
+              Let's Build Something
               <span className="block text-white/80">Useful Together</span>
             </motion.h1>
 
@@ -181,7 +185,7 @@ function ContactPage() {
               className="mx-auto max-w-2xl text-lg text-white/80 md:text-xl"
             >
               Have a project in mind, need support, or want to discuss your business requirements?
-              We’re ready to help.
+              We're ready to help.
             </motion.p>
 
             <motion.div
@@ -243,7 +247,7 @@ function ContactPage() {
                   </h2>
 
                   <p className="mt-4 text-sm leading-7 text-white/80 sm:text-base">
-                  Looking for Tally solutions, cloud services, or customized software for your business? Our experts are ready to help you choose the right technology solution.
+                    Looking for Tally solutions, cloud services, or customized software for your business? Our experts are ready to help you choose the right technology solution.
                   </p>
 
                   <motion.a
@@ -259,22 +263,21 @@ function ContactPage() {
                     Chat on WhatsApp
                   </motion.a>
 
-                  <div className="mt-7 space-y-3">
-                    {[
-                      `Phone: ${PHONE_DISPLAY}`,
-                      `Email: ${EMAIL}`,
-                      'Location: kalamassery, Ernakulam, Kerala - 682034'
-                    ].map((item) => (
-                      <motion.div
-                        key={item}
-                        whileHover={{ x: 6 }}
-                        className="rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white/85 backdrop-blur-sm"
-                      >
-                        {item}
-                      </motion.div>
-                    ))}
-                  </div>
-
+ <div className="mt-7 space-y-3">
+  {[
+    `Phone: ${PHONE_DISPLAY}`,
+    `Email: ${EMAIL}`,
+    'Location: A9, 2nd Floor, SGR Tower, Factory Road, North Kalamassery, Kochi - 683104'
+  ].map((item) => (
+    <motion.div
+      key={item}
+      whileHover={{ x: 6 }}
+      className="rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white/85 backdrop-blur-sm"
+    >
+      {item}
+    </motion.div>
+  ))}
+</div>
                   <motion.div
                     initial={{ opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -323,7 +326,7 @@ function ContactPage() {
                       animate={{ opacity: 1, y: 0 }}
                       className="mb-4 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700"
                     >
-                      Thanks! Your message is in.
+                      Thanks! Your message has been sent to {EMAIL}.
                     </motion.div>
                   )}
 
@@ -471,7 +474,7 @@ function ContactPage() {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-[#ff3f6a] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-[#eb2f5d] disabled:cursor-not-allowed disabled:opacity-70"
+                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-[#ff3f6a] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-[#eb2f5d] transition hover:bg-[#eb2f5d] disabled:cursor-not-allowed disabled:opacity-70"
                         >
                           {isSubmitting ? 'Sending...' : 'Send Message'}
                         </Button>
@@ -491,17 +494,17 @@ function ContactPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.5647570498877!2d76.28189537583685!3d10.052697990054378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d8d0554c2f5%3A0x7d1a93259e8f0a0a!2sCheranallur%2C%20Ernakulam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1709886475000!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="CamTIT Solutions location"
-                className="grayscale hover:grayscale-0 transition-all duration-500"
-              />
+            <iframe
+  src={MAP_EMBED_URL}
+  width="100%"
+  height="100%"
+  style={{ border: 0 }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+  title="CAMET IT SOLUTIONS LLP - SGR Tower, Factory Road, North Kalamassery"
+  className="grayscale hover:grayscale-0 transition-all duration-500"
+/>
             </motion.div>
 
             <motion.div

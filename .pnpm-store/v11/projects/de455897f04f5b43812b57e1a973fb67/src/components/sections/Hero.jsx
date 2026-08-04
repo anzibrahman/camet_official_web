@@ -44,7 +44,7 @@ function Hero() {
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-5 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16 lg:px-12 lg:pt-24">
           <div className="max-w-4xl">
             <div className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.28em] text-white/75 backdrop-blur-md">
-              CAMET IT Solutions
+              CAMET IT SOLUTIONS LLP
             </div>
 
             <h1
@@ -64,7 +64,8 @@ function Hero() {
 
             <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <a
-                href="tel:+919876543210"
+                href="tel:9072632605
+"
                 className="inline-flex min-w-[180px] items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold tracking-[0.02em] text-slate-900 shadow-[0_18px_50px_rgba(255,255,255,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-100 sm:text-base"
               >
                 Schedule a Call
