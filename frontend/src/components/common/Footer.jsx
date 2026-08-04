@@ -59,7 +59,7 @@ function Footer() {
         <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-2 xl:grid-cols-6">
           <div className="xl:col-span-2">
             <span className="inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-white/70">
-              CAMET IT Solutions
+              CAMET IT SOLUTIONS LLP
             </span>
 
             <h3 className="mt-4 text-2xl font-semibold leading-tight text-white">
@@ -67,7 +67,7 @@ function Footer() {
             </h3>
 
             <p className="mt-4 max-w-md text-sm leading-7 text-white/65">
-              CAMET IT Solutions provides Tally products, cloud access, implementation support,
+              CAMET IT SOLUTIONS LLP provides Tally products, cloud access, implementation support,
               customization, and industry-focused software solutions for finance, operations,
               hospitality, laboratories, and business management.
             </p>
@@ -159,15 +159,18 @@ function Footer() {
               <ul className="mt-4 space-y-3 text-sm text-white/65">
                 <li className="flex items-start gap-3">
                   <FaPhoneAlt className="mt-1 shrink-0 text-[12px] text-cyan-300" />
-                  <span>+91 82818 70533</span>
+                  <span>9072632605
+9072632606
+9072632607
+</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <FaEnvelope className="mt-1 shrink-0 text-[12px] text-cyan-300" />
-                  <span>info@cametitsolutions.com</span>
+                  <span>Admin@camet.in</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <FaMapMarkerAlt className="mt-1 shrink-0 text-[12px] text-cyan-300" />
-                  <span>Kerala, India</span>
+                  <span> Kalamassery,Kerala, India</span>
                 </li>
               </ul>
             </div>
@@ -176,7 +179,7 @@ function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-3 pt-6 text-center sm:flex-row sm:text-left">
           <p className="text-sm text-white/50">
-            &copy; {currentYear} CAMET IT Solutions. All rights reserved.
+            &copy; {currentYear} CAMET IT SOLUTIONS LLP. All rights reserved.
           </p>
 
           <p className="text-sm text-white/45">

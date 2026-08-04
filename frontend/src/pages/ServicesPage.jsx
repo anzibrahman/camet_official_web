@@ -1,190 +1,304 @@
 import { motion } from 'framer-motion'
-import Button from '../components/common/Button'
+import {
+  FaCloud,
+  FaDatabase,
+  FaPuzzlePiece,
+  FaCogs,
+  FaNetworkWired,
+  FaHeadset,
+  FaCheckCircle,
+  FaArrowRight,
+  FaLaptopCode,
+  FaTools,
+  FaUsersCog,
+  FaServer,
+  FaChartLine,
+  FaClipboardCheck,
+  FaLifeRing,
+  FaSyncAlt,
+  FaChalkboardTeacher,
+} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+
+const services = [
+  {
+    title: 'Tally Sales & Services',
+    icon: FaPuzzlePiece,
+    short: 'Complete TallyPrime solutions for sales, setup, and ongoing business support.',
+    description:
+      'We provide end-to-end TallyPrime sales, installation, implementation, migration, customization, and support services for smooth business operations.',
+    features: [
+      'TallyPrime sales',
+      'Installation & configuration',
+      'Implementation & migration',
+      'Annual support & maintenance',
+      'Data synchronization',
+      'Tally customization',
+      'Training & user support',
+    ],
+    accent: 'from-sky-500 to-blue-600',
+  },
+  {
+    title: 'Customized Software Solutions',
+    icon: FaCogs,
+    short: 'Business-fit applications designed around your workflow.',
+    description:
+      'We design and develop customized applications based on your business requirements, integrating automation and reporting features that improve operational efficiency.',
+    features: [
+      'Requirement-based application development',
+      'Workflow automation features',
+      'Custom reporting modules',
+      'Operational efficiency improvements',
+      'Scalable business software solutions',
+    ],
+    accent: 'from-violet-500 to-indigo-600',
+  },
+  {
+    title: 'Cloud Solutions & Web Development',
+    icon: FaCloud,
+    short: 'Secure cloud infrastructure and modern web apps.',
+    description:
+      'Secure cloud infrastructure and modern web applications that give your business reliable access, backup, and scalable digital operations.',
+    features: [
+      'Cloud hosting for Tally',
+      'Remote access',
+      'Secure data backup',
+      'Cloud infrastructure',
+      'Multi-location access',
+      'Secure web application development',
+      'User-friendly business web solutions',
+    ],
+    accent: 'from-cyan-500 to-sky-600',
+  },
+  {
+    title: 'Implementation & Migration',
+    icon: FaSyncAlt,
+    short: 'Move from old systems to modern workflows without disruption.',
+    description:
+      'We handle full implementation planning and data migration so your team can transition to new systems safely, accurately, and with minimum downtime.',
+    features: [
+      'Legacy data migration',
+      'New system rollout',
+      'Configuration planning',
+      'Workflow mapping',
+      'Testing and validation',
+      'Go-live support',
+    ],
+    accent: 'from-emerald-500 to-teal-600',
+  },
+  {
+    title: 'Training & User Support',
+    icon: FaChalkboardTeacher,
+    short: 'Help your team learn and use the system confidently.',
+    description:
+      'We provide structured training sessions and user support so your staff can use the software effectively and your business can run more efficiently.',
+    features: [
+      'On-site training sessions',
+      'Online training programs',
+      'User manual documentation',
+      'Video tutorials',
+      '24/7 help desk support',
+      'Remote assistance',
+    ],
+    accent: 'from-orange-500 to-amber-600',
+  },
+  {
+    title: 'IT Consulting & Support',
+    icon: FaHeadset,
+    short: 'Guidance to improve your technology and business processes.',
+    description:
+      'We help businesses choose the right technology stack, improve operations, and maintain reliable systems with professional consulting and support.',
+    features: [
+      'IT strategy planning',
+      'System architecture design',
+      'Process automation',
+      'Security audits',
+      'Performance optimization',
+      'Technical support',
+    ],
+    accent: 'from-pink-500 to-rose-600',
+  },
+]
+
+const highlights = [
+  { icon: FaDatabase, label: 'Secure business data' },
+  { icon: FaNetworkWired, label: 'Connected systems' },
+  { icon: FaUsersCog, label: 'Team enablement' },
+]
 
 function ServicesPage() {
-  const services = [
-    {
-      title: 'Tally ERP Solutions',
-      icon: '📊',
-      description: 'Complete Tally ERP 9 implementation, customization, and support services for businesses of all sizes.',
-      features: [
-        'Installation and Configuration',
-        'Data Migration from Legacy Systems',
-        'Custom Reports and Forms',
-        'Multi-location Setup',
-        'GST Compliance',
-        'Tally Vault Implementation',
-        'Remote Access Setup',
-        'Annual Maintenance Contracts'
-      ]
-    },
-    {
-      title: 'Marg ERP Services',
-      icon: '💼',
-      description: 'Expert Marg ERP deployment and ongoing support for retail and distribution businesses.',
-      features: [
-        'Marg ERP Installation',
-        'Inventory Management Setup',
-        'Billing System Configuration',
-        'Barcode Integration',
-        'GST Return Filing',
-        'Multi-user Environment',
-        'Data Backup Solutions',
-        'Training and Support'
-      ]
-    },
-    {
-      title: 'Custom Software Development',
-      icon: '💻',
-      description: 'Tailored software solutions designed specifically for your business requirements.',
-      features: [
-        'Web Application Development',
-        'Mobile App Development (iOS & Android)',
-        'Desktop Software',
-        'E-commerce Solutions',
-        'CRM Systems',
-        'Inventory Management',
-        'Booking Systems',
-        'API Development and Integration'
-      ]
-    },
-    {
-      title: 'IT Consulting',
-      icon: '🔧',
-      description: 'Strategic technology consulting to optimize your business processes and IT infrastructure.',
-      features: [
-        'IT Strategy Planning',
-        'System Architecture Design',
-        'Technology Assessment',
-        'Digital Transformation',
-        'Process Automation',
-        'Cloud Migration',
-        'Security Audits',
-        'Performance Optimization'
-      ]
-    },
-    {
-      title: 'Software Integration',
-      icon: '📱',
-      description: 'Seamless integration of various business systems and third-party applications.',
-      features: [
-        'API Integration',
-        'Payment Gateway Integration',
-        'Third-party Tool Integration',
-        'Database Synchronization',
-        'Workflow Automation',
-        'ERP Integration',
-        'CRM Integration',
-        'E-commerce Platform Integration'
-      ]
-    },
-    {
-      title: 'Training & Support',
-      icon: '🎓',
-      description: 'Comprehensive training programs and round-the-clock technical support.',
-      features: [
-        'On-site Training Sessions',
-        'Online Training Programs',
-        'User Manual Documentation',
-        'Video Tutorials',
-        '24/7 Help Desk Support',
-        'Remote Assistance',
-        'Regular Software Updates',
-        'Troubleshooting Services'
-      ]
-    }
-  ]
-
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Professional Hero Section */}
-      <section className="bg-brand-900 text-white pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div className="min-h-screen bg-slate-50">
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-[#071426] pt-28 pb-16 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.14),transparent_30%)]" />
+        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:56px_56px]" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.45 }}
+            className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center"
           >
-            <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-brand-200 uppercase bg-brand-800 rounded-full">
-              Our Expertise
+            <div>
+              <span className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-sky-200">
+                Professional Services
+              </span>
+
+              <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl leading-[1.05]">
+                Absolute service solutions for modern business operations.
+              </h1>
+
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/75 md:text-base">
+                From Tally sales and migration to cloud solutions, software development, training,
+                and ongoing support, we deliver services that help your business work smarter.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                {highlights.map((item, index) => {
+                  const Icon = item.icon
+                  return (
+                    <div
+                      key={index}
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/80 backdrop-blur-sm"
+                    >
+                      <Icon className="text-sky-300" />
+                      <span>{item.label}</span>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-sky-500/20 transition hover:bg-sky-600"
+                >
+                  Talk to our team
+                  <FaArrowRight className="text-xs" />
+                </Link>
+                <a
+                  href="#services"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                >
+                  View services
+                </a>
+              </div>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              Professional Services
-            </h1>
-            <p className="text-lg text-brand-100 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive IT solutions tailored to meet your business needs. From ERP implementation to custom software development, we deliver excellence.
-            </p>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, rotate: 0 }}
+              animate={{ opacity: 1, scale: 1, rotate: -2 }}
+              transition={{ duration: 0.5, delay: 0.12 }}
+              className="relative hidden justify-self-end lg:block"
+            >
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-md">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="rounded-2xl bg-white/10 p-5">
+                    <FaLaptopCode className="text-3xl text-sky-300" />
+                    <h3 className="mt-4 text-lg font-semibold">Software</h3>
+                    <p className="mt-1 text-sm text-white/70">Custom applications</p>
+                  </div>
+                  <div className="rounded-2xl bg-white/10 p-5">
+                    <FaCloud className="text-3xl text-cyan-300" />
+                    <h3 className="mt-4 text-lg font-semibold">Cloud</h3>
+                    <p className="mt-1 text-sm text-white/70">Access anywhere</p>
+                  </div>
+                  <div className="rounded-2xl bg-white/10 p-5">
+                    <FaSyncAlt className="text-3xl text-emerald-300" />
+                    <h3 className="mt-4 text-lg font-semibold">Migration</h3>
+                    <p className="mt-1 text-sm text-white/70">Safe transition</p>
+                  </div>
+                  <div className="rounded-2xl bg-white/10 p-5">
+                    <FaChalkboardTeacher className="text-3xl text-orange-300" />
+                    <h3 className="mt-4 text-lg font-semibold">Training</h3>
+                    <p className="mt-1 text-sm text-white/70">User support</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Detail List */}
-      <section className="py-20 -mt-10 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-lg shadow-md border border-slate-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-                  {/* Icon Column */}
-                  <div className="lg:col-span-3 bg-slate-50 p-8 flex flex-col justify-center items-center text-center border-b lg:border-b-0 lg:border-r border-slate-100">
-                    <div className="w-20 h-20 bg-white rounded-2xl shadow-sm flex items-center justify-center text-4xl mb-4 border border-slate-100">
-                      {service.icon}
+      {/* Services */}
+      <section id="services" className="relative -mt-10 pb-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {services.map((service, index) => {
+              const Icon = service.icon
+              return (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className={`h-2 bg-gradient-to-r ${service.accent}`} />
+                  <div className="p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-r ${service.accent} text-white shadow-lg`}>
+                        <Icon className="text-xl" />
+                      </div>
+                      <span className="text-3xl font-bold text-slate-100 select-none">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
                     </div>
-                    <h3 className="text-xl font-bold text-brand-900">{service.title}</h3>
-                  </div>
 
-                  {/* Content Column */}
-                  <div className="lg:col-span-9 p-8 lg:p-10">
-                    <p className="text-base text-slate-600 mb-8 leading-relaxed">
+                    <h3 className="mt-5 text-xl font-bold text-slate-900">
+                      {service.title}
+                    </h3>
+                    <p className="mt-2 text-sm font-medium text-slate-500">
+                      {service.short}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
                       {service.description}
                     </p>
-                    
-                    <div>
-                      <h4 className="text-sm font-bold text-brand-700 uppercase tracking-wide mb-4 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
-                        Key Features
-                      </h4>
-                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-                        {service.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start text-sm text-slate-700 group">
-                            <svg className="w-5 h-5 mr-2.5 text-brand-500 flex-shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="group-hover:text-brand-700 transition-colors">{feature}</span>
-                          </li>
+
+                    <div className="mt-5 rounded-2xl bg-slate-50 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        Key features
+                      </p>
+                      <div className="mt-3 space-y-2">
+                        {service.features.map((feature) => (
+                          <div key={feature} className="flex items-start gap-2 text-sm text-slate-700">
+                            <FaCheckCircle className="mt-0.5 shrink-0 text-sky-500" />
+                            <span>{feature}</span>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-white border-t border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-brand-900 mb-4">
-            Need a Custom Solution?
-          </h2>
-          <p className="text-lg text-slate-600 mb-8">
-            Can't find exactly what you're looking for? Let's discuss your specific requirements.
-          </p>
-          <Button 
-            to="/contact" 
-            className="bg-brand-600 text-blue hover:bg-brand-700 px-8 py-3 rounded-md font-semibold shadow-lg shadow-brand-100"
-          >
-            Start a Conversation
-          </Button>
+      {/* CTA */}
+      <section className="pb-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-[#071426] px-6 py-10 text-center text-white shadow-xl">
+            <h2 className="text-2xl font-bold md:text-3xl">
+              Need a custom service plan for your business?
+            </h2>
+            <p className="mt-3 text-sm text-white/70 md:text-base">
+              We can help you choose the right service, add migration support, and train your team.
+            </p>
+            <div className="mt-6">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-medium text-white transition hover:bg-sky-600"
+              >
+                Get in touch
+                <FaArrowRight className="text-xs" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>

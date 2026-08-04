@@ -154,7 +154,7 @@ function ContactSection() {
             <ContactCard
               icon={FaEnvelope}
               label="Email"
-              value="info@cametitsolutions.com"
+              value="Admin@camet.in"
             />
             <ContactCard
               icon={FaMapMarkerAlt}

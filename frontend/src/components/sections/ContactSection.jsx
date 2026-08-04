@@ -8,9 +8,13 @@ const ACCENT = '#4FD1E8'
 const SERVICES = ['Tally Solutions', 'Cloud Services', 'Custom Software']
 
 const CONTACTS = [
-  { icon: FaPhoneAlt, label: 'Phone', value: '+91 82818 70533' },
-  { icon: FaEnvelope, label: 'Email', value: 'info@cametitsolutions.com' },
-  { icon: FaMapMarkerAlt, label: 'Location', value: 'Kerala, India' },
+  {
+    icon: FaPhoneAlt,
+    label: 'Phone',
+    value: '9072632605, 9072632606'
+  },
+  { icon: FaEnvelope, label: 'Email', value: 'Admin@camet.in' },
+  { icon: FaMapMarkerAlt, label: 'Location', value: 'Kalamassery,Kerala, India' },
 ]
 
 const GRAIN =

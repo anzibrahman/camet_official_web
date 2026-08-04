@@ -1,25 +1,25 @@
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 import {
-  FaGoogle,
-  FaSlack,
-  FaAmazon,
-  FaMicrosoft,
-  FaShopify,
-  FaDropbox,
-  FaStripe,
-} from 'react-icons/fa'
-import { SiZoom } from 'react-icons/si'
+  FaCloud,
+  FaChartLine,
+  FaTools,
+  FaFlask,
+  FaHotel,
+  FaUtensils,
+  FaCalculator,
+} from "react-icons/fa";
+import { BsShop } from "react-icons/bs";
 
 const logos = [
-  { name: 'Google', icon: FaGoogle, color: 'text-[#4285F4]' },
-  { name: 'Slack', icon: FaSlack, color: 'text-[#4A154B]' },
-  { name: 'Amazon', icon: FaAmazon, color: 'text-[#FF9900]' },
-  { name: 'Microsoft', icon: FaMicrosoft, color: 'text-[#00A4EF]' },
-  { name: 'Zoom', icon: SiZoom, color: 'text-[#2D8CFF]' },
-  { name: 'Shopify', icon: FaShopify, color: 'text-[#95BF47]' },
-  { name: 'Dropbox', icon: FaDropbox, color: 'text-[#0061FF]' },
-  { name: 'Stripe', icon: FaStripe, color: 'text-[#635BFF]' },
-]
+  { name: "Tally", icon: FaCalculator, color: "text-[#2ecc71]" },
+  { name: "Cloud", icon: FaCloud, color: "text-[#3498db]" },
+  { name: "Biz Analyst", icon: FaChartLine, color: "text-[#8e44ad]" },
+  { name: "ERP Vansale", icon: FaTools, color: "text-[#e67e22]" },
+  { name: "Lab Management", icon: FaFlask, color: "text-[#16a085]" },
+  { name: "Hotel Management", icon: FaHotel, color: "text-[#e84393]" },
+  { name: "Restaurant Management", icon: FaUtensils, color: "text-[#f39c12]" },
+ 
+];
 
 function LogoItem({ icon: Icon, name, color }) {
   return (
@@ -29,31 +29,20 @@ function LogoItem({ icon: Icon, name, color }) {
         {name}
       </span>
     </div>
-  )
+  );
 }
 
 function LogoStrip() {
   return (
     <section className="relative overflow-hidden bg-[#e7e7e7] py-3 md:py-3">
-      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-        <div className="text-center">
-          <p className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-slate-500 mb-3">
-            // Trusted Platforms
-          </p>
-          <h2 className="text-[22px] sm:text-[28px] md:text-[34px] font-light tracking-tight text-slate-900">
-            Platforms that power connected business operations.
-          </h2>
-        </div>
-      </div> */}
-
       <div className="relative w-full overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 w-20 md:w-32 bg-gradient-to-r from-[#efefec] to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-20 md:w-32 bg-gradient-to-l from-[#efefec] to-transparent z-10" />
 
         <motion.div
           className="flex items-center gap-2 md:gap-4 w-max"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         >
           {[...logos, ...logos].map((logo, index) => (
             <LogoItem
@@ -66,7 +55,7 @@ function LogoStrip() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
-export default LogoStrip
+export default LogoStrip;
