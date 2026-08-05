@@ -478,7 +478,7 @@ function ContactPage() {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-70"
+                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-sky-700 transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-70"
                         >
                           {isSubmitting ? 'Sending...' : 'Send Message'}
                         </Button>
