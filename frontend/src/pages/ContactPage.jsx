@@ -9,13 +9,15 @@ const WHATSAPP_NUMBER = '9072632605'
 const EMAIL = 'Admin@camet.in'
 
 // Registered office address for the map
-const MAP_EMBED_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.4742857142856!2d76.318956!3d10.063056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08795f5f5f5f5f:0x0!2sA9,+2nd+Floor,+SGR+Tower,+5/215,+Factory+Road,+North+Kalamassery,+Kalamassery,+Kochi,+Kerala+683104!5e0!3m2!1sen!2sin!4v1709886475000!5m2!1sen!2sin';
+const MAP_EMBED_URL =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.4742857142856!2d76.318956!3d10.063056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08795f5f5f5f5f:0x0!2sA9,+2nd+Floor,+SGR+Tower,+5/215,+Factory+Road,+North+Kalamassery,+Kalamassery,+Kochi,+Kerala+683104!5e0!3m2!1sen!2sin!4v1709886475000!5m2!1sen!2sin'
+
 function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
   })
 
   const [errors, setErrors] = useState({})
@@ -55,44 +57,44 @@ function ContactPage() {
     }
   }
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-  const validationErrors = validate(formData)
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors)
-    return
-  }
-
-  setIsSubmitting(true)
-  setSubmitStatus('')
-
-  try {
-    const response = await api.post('/contact', formData)
-
-    if (response.data.success) {
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', phone: '', message: '' })
-      setErrors({})
-    } else {
-      setSubmitStatus('error')
+    const validationErrors = validate(formData)
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
     }
-  } catch (err) {
-    console.error('Submit error:', err)
-    setSubmitStatus('error')
-  } finally {
-    setIsSubmitting(false)
-    setTimeout(() => setSubmitStatus(''), 5000)
+
+    setIsSubmitting(true)
+    setSubmitStatus('')
+
+    try {
+      const response = await api.post('/contact', formData)
+
+      if (response.data.success) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', phone: '', message: '' })
+        setErrors({})
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (err) {
+      console.error('Submit error:', err)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+      setTimeout(() => setSubmitStatus(''), 5000)
+    }
   }
-}
 
   const fadeUp = {
     hidden: { opacity: 0, y: 28 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
   }
 
   const fadeLeft = {
@@ -100,8 +102,8 @@ const handleSubmit = async (e) => {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
-    }
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    },
   }
 
   const fadeRight = {
@@ -109,23 +111,23 @@ const handleSubmit = async (e) => {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
-    }
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    },
   }
 
   const staggerWrap = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   }
 
   const quickItems = [
     { label: 'Reply time', value: 'Within 1 business day' },
     { label: 'Support', value: 'Mon – Sat, 9.30 AM – 5.30 PM' },
-    { label: 'Location', value: 'kalamassery,Ernakulam, Kerala' }
+    { label: 'Location', value: 'kalamassery,Ernakulam, Kerala' },
   ]
 
   return (
@@ -138,7 +140,7 @@ const handleSubmit = async (e) => {
             style={{
               backgroundImage:
                 'linear-gradient(to right, rgba(255,255,255,0.16) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.16) 1px, transparent 1px)',
-              backgroundSize: '42px 42px'
+              backgroundSize: '42px 42px',
             }}
           />
         </div>
@@ -247,7 +249,8 @@ const handleSubmit = async (e) => {
                   </h2>
 
                   <p className="mt-4 text-sm leading-7 text-white/80 sm:text-base">
-                    Looking for Tally solutions, cloud services, or customized software for your business? Our experts are ready to help you choose the right technology solution.
+                    Looking for Tally solutions, cloud services, or customized software for your
+                    business? Our experts are ready to help you choose the right technology solution.
                   </p>
 
                   <motion.a
@@ -263,21 +266,22 @@ const handleSubmit = async (e) => {
                     Chat on WhatsApp
                   </motion.a>
 
- <div className="mt-7 space-y-3">
-  {[
-    `Phone: ${PHONE_DISPLAY}`,
-    `Email: ${EMAIL}`,
-    'Location: A9, 2nd Floor, SGR Tower, Factory Road, North Kalamassery, Kochi - 683104'
-  ].map((item) => (
-    <motion.div
-      key={item}
-      whileHover={{ x: 6 }}
-      className="rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white/85 backdrop-blur-sm"
-    >
-      {item}
-    </motion.div>
-  ))}
-</div>
+                  <div className="mt-7 space-y-3">
+                    {[
+                      `Phone: ${PHONE_DISPLAY}`,
+                      `Email: ${EMAIL}`,
+                      'Location: A9, 2nd Floor, SGR Tower, Factory Road, North Kalamassery, Kochi - 683104',
+                    ].map((item) => (
+                      <motion.div
+                        key={item}
+                        whileHover={{ x: 6 }}
+                        className="rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white/85 backdrop-blur-sm"
+                      >
+                        {item}
+                      </motion.div>
+                    ))}
+                  </div>
+
                   <motion.div
                     initial={{ opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -294,17 +298,17 @@ const handleSubmit = async (e) => {
                 </div>
               </motion.div>
 
-              {/* Right form */}
+              {/* Right form - neutral background, no pink */}
               <motion.div
                 variants={fadeRight}
-                className="flex items-center justify-center bg-[linear-gradient(180deg,#f8d7de_0%,#f6cfd7_100%)] p-4 sm:p-5 md:p-7"
+                className="flex items-center justify-center bg-white p-4 sm:p-5 md:p-7"
               >
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.25 }}
-                  className="relative w-full max-w-[500px] rounded-[22px] border border-white/30 bg-white/35 px-5 py-6 shadow-[0_14px_34px_rgba(44,31,72,0.12)] backdrop-blur-md sm:px-6 sm:py-7"
+                  className="relative w-full max-w-[500px] rounded-[22px] border border-slate-200 bg-white px-5 py-6 shadow-[0_14px_34px_rgba(44,31,72,0.08)] sm:px-6 sm:py-7"
                 >
-                  <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-slate-300/70 to-transparent" />
 
                   <motion.h3
                     variants={fadeUp}
@@ -366,10 +370,10 @@ const handleSubmit = async (e) => {
                         placeholder="Enter your name"
                         aria-invalid={!!errors.name}
                         aria-describedby={errors.name ? 'name-error' : undefined}
-                        className={`h-11 w-full rounded-xl border bg-white/80 px-4 text-sm text-slate-900 placeholder:text-slate-500 outline-none ${
+                        className={`h-11 w-full rounded-xl border bg-white px-4 text-sm text-slate-900 placeholder:text-slate-500 outline-none ${
                           errors.name
                             ? 'border-red-300 focus:border-red-400'
-                            : 'border-[#d7b7be] focus:border-[#7f5d67]'
+                            : 'border-slate-300 focus:border-sky-400'
                         }`}
                       />
                       {errors.name && (
@@ -396,10 +400,10 @@ const handleSubmit = async (e) => {
                         placeholder="Enter your email"
                         aria-invalid={!!errors.email}
                         aria-describedby={errors.email ? 'email-error' : undefined}
-                        className={`h-11 w-full rounded-xl border bg-white/80 px-4 text-sm text-slate-900 placeholder:text-slate-500 outline-none ${
+                        className={`h-11 w-full rounded-xl border bg-white px-4 text-sm text-slate-900 placeholder:text-slate-500 outline-none ${
                           errors.email
                             ? 'border-red-300 focus:border-red-400'
-                            : 'border-[#d7b7be] focus:border-[#7f5d67]'
+                            : 'border-slate-300 focus:border-sky-400'
                         }`}
                       />
                       {errors.email && (
@@ -426,10 +430,10 @@ const handleSubmit = async (e) => {
                         placeholder="Enter your phone number"
                         aria-invalid={!!errors.phone}
                         aria-describedby={errors.phone ? 'phone-error' : undefined}
-                        className={`h-11 w-full rounded-xl border bg-white/80 px-4 text-sm text-slate-900 placeholder:text-slate-500 outline-none ${
+                        className={`h-11 w-full rounded-xl border bg-white px-4 text-sm text-slate-900 placeholder:text-slate-500 outline-none ${
                           errors.phone
                             ? 'border-red-300 focus:border-red-400'
-                            : 'border-[#d7b7be] focus:border-[#7f5d67]'
+                            : 'border-slate-300 focus:border-sky-400'
                         }`}
                       />
                       {errors.phone && (
@@ -456,10 +460,10 @@ const handleSubmit = async (e) => {
                         placeholder="Tell us about your requirement"
                         aria-invalid={!!errors.message}
                         aria-describedby={errors.message ? 'message-error' : undefined}
-                        className={`w-full rounded-xl border bg-white/80 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-500 outline-none resize-none ${
+                        className={`w-full rounded-xl border bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-500 outline-none resize-none ${
                           errors.message
                             ? 'border-red-300 focus:border-red-400'
-                            : 'border-[#d7b7be] focus:border-[#7f5d67]'
+                            : 'border-slate-300 focus:border-sky-400'
                         }`}
                       />
                       {errors.message && (
@@ -474,7 +478,7 @@ const handleSubmit = async (e) => {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-[#ff3f6a] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-[#eb2f5d] transition hover:bg-[#eb2f5d] disabled:cursor-not-allowed disabled:opacity-70"
+                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-sky-700 transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-70"
                         >
                           {isSubmitting ? 'Sending...' : 'Send Message'}
                         </Button>
@@ -494,17 +498,17 @@ const handleSubmit = async (e) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-            <iframe
-  src={MAP_EMBED_URL}
-  width="100%"
-  height="100%"
-  style={{ border: 0 }}
-  allowFullScreen=""
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-  title="CAMET IT SOLUTIONS LLP - SGR Tower, Factory Road, North Kalamassery"
-  className="grayscale hover:grayscale-0 transition-all duration-500"
-/>
+              <iframe
+                src={MAP_EMBED_URL}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="CAMET IT SOLUTIONS LLP - SGR Tower, Factory Road, North Kalamassery"
+                className="grayscale hover:grayscale-0 transition-all duration-500"
+              />
             </motion.div>
 
             <motion.div
@@ -518,20 +522,20 @@ const handleSubmit = async (e) => {
                 {
                   title: 'Call us',
                   value: PHONE_DISPLAY,
-                  href: `tel:${PHONE_TEL}`
+                  href: `tel:${PHONE_TEL}`,
                 },
                 {
                   title: 'Email us',
                   value: EMAIL,
-                  href: `mailto:${EMAIL}`
+                  href: `mailto:${EMAIL}`,
                 },
                 {
                   title: 'WhatsApp',
                   value: 'Start a quick chat',
                   href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                     "Hi, I'd like to know more about your services."
-                  )}`
-                }
+                  )}`,
+                },
               ].map((item) => (
                 <motion.a
                   key={item.title}

@@ -2,9 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import logo from '../../assets/White_Logo_HD.png'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  FaBoxOpen,
-} from 'react-icons/fa'
+import { FaBoxOpen } from 'react-icons/fa'
 import { RiStackFill } from 'react-icons/ri'
 import { products } from '@/data/Product'
 import { solutions } from '@/data/solutions'
@@ -155,7 +153,6 @@ function Header() {
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-slate-950/60 shadow-lg backdrop-blur-md' : 'bg-transparent'
       }`}
-      onMouseLeave={() => setOpenDropdown(null)}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="flex h-20 items-center px-4 sm:px-6">
@@ -208,7 +205,8 @@ function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-  <Link
+
+              <Link
                 to="/services"
                 className={`text-[12px] transition-colors ${
                   isActive('/services') ? 'text-white' : 'text-white/85 hover:text-white'
@@ -217,6 +215,7 @@ function Header() {
               >
                 Services
               </Link>
+
               <button
                 type="button"
                 onMouseEnter={() => setOpenDropdown('solutions')}
@@ -293,13 +292,19 @@ function Header() {
             transition={{ duration: 0.2 }}
             className="absolute left-0 right-0 top-[80px] hidden lg:block"
           >
-            <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
+            {/* This inner div is the actual hover area for the mega menu */}
+            <div
+              onMouseLeave={() => setOpenDropdown(null)}
+              className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12"
+            >
               <div className="overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.12)]">
                 <div className="grid min-h-[320px] grid-cols-12">
                   <div className="col-span-4 border-r border-black/10 bg-slate-50 p-8">
                     <div className="flex items-center gap-4">
                       <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${dropdownMeta.iconBg}`}>
-                        {LeftIcon && <LeftIcon className={`text-[22px] ${dropdownMeta.iconColor}`} />}
+                        {LeftIcon && (
+                          <LeftIcon className={`text-[22px] ${dropdownMeta.iconColor}`} />
+                        )}
                       </div>
 
                       <div>

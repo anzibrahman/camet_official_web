@@ -159,201 +159,133 @@ function AboutPage() {
   const slidingPartners = [...partners, ...partners]
 
   return (
-    <div className="min-h-screen bg-[#d7e7fa]">
+    <div className="min-h-screen bg-[#C2D8F7] pt-[72px]">
       {/* Hero */}
-<section className="relative overflow-hidden bg-white py-20 md:py-24">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.08),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(20,184,166,0.08),transparent_28%)]" />
-  <div className="absolute inset-0 opacity-[0.25] [background-image:linear-gradient(rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:60px_60px]" />
+      <section className="relative overflow-hidden bg-white py-20 md:py-24">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.08),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(20,184,166,0.08),transparent_28%)]" />
+        <div className="absolute inset-0 opacity-[0.25] [background-image:linear-gradient(rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:60px_60px]" />
 
-  <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-      {/* Left side */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">
-          About CAMET
-        </div>
-
-        <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
-          Building smarter business systems with technology, support, and trust.
-        </h2>
-
-        <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
-          CAMET IT SOLUTIONS LLP helps organizations streamline operations with ERP services,
-          cloud solutions, software development, and ongoing support. We focus on practical
-          execution, clean implementation, and long-term value.
-        </p>
-
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Button
-            variant="primary"
-            to="/contact"
-            className="rounded-full bg-sky-600 px-6 py-3 font-semibold text-shadow-sky-600/20 shadow-lg shadow-sky-600/20 transition hover:bg-sky-700"
-          >
-            Schedule a Meeting
-          </Button>
-
-          <a
-            href="#services"
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:border-sky-300 hover:text-sky-700"
-          >
-            Explore Services
-          </a>
-        </div>
-
-        <div className="mt-8 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">
-          {[
-            { value: "ERP", label: "Implementation" },
-            { value: "Cloud", label: "Solutions" },
-            { value: "Support", label: "Training" },
-          ].map((item) => (
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            {/* Left side */}
             <motion.div
-              key={item.label}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <p className="text-lg font-bold text-slate-900">{item.value}</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">
-                {item.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Right side */}
-      <motion.div
-        initial={{ opacity: 0, x: 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative"
-      >
-        <div className="relative mx-auto max-w-[560px]">
-          <div className="absolute -left-6 top-8 h-24 w-24 rounded-full bg-sky-200/60 blur-3xl" />
-          <div className="absolute -right-4 bottom-8 h-28 w-28 rounded-full bg-teal-200/60 blur-3xl" />
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="overflow-hidden rounded-[28px] bg-slate-100 shadow-xl md:mt-8">
-              <img
-                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80"
-                alt="Business workspace"
-                className="h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="space-y-4">
-              <div className="rounded-[28px] bg-[#0F172A] p-6 text-white shadow-xl">
-                <p className="text-sm uppercase tracking-[0.22em] text-sky-300">
-                  Our Approach
-                </p>
-                <p className="mt-4 text-lg font-semibold leading-7">
-                  Simple process. Clear communication. Reliable delivery.
-                </p>
-              </div>
-
-              <div className="overflow-hidden rounded-[28px] bg-slate-100 shadow-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80"
-                  alt="Team collaboration"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-2xl border border-slate-200 bg-white px-5 py-3 shadow-xl"
-          >
-            <p className="text-sm font-semibold text-slate-900">
-              Trusted business technology partner
-            </p>
-            <p className="mt-1 text-xs text-slate-500">
-              ERP · Integrations · Custom Software
-            </p>
-          </motion.div>
-        </div>
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-      {/* Overview + mission + credentials */}
-      {/* <section className="bg-[#e8eef5] py-10 md:py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#0F766E]">
-                Company Overview
-              </p>
-              <h2 className="text-2xl font-bold text-[#1F2937] md:text-3xl">
-                Technology solutions built around real business needs
+              <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">
+                About CAMET
+              </div>
+
+              <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+                Building smarter business systems with technology, support, and trust.
               </h2>
-              <p className="mt-4 text-base leading-7 text-slate-600">
-                CAMET IT SOLUTIONS LLP delivers implementation, integration, support, and custom development
-                services for organizations that need better control over operations, reporting, scalability,
-                and business continuity.
+
+              <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
+                CAMET IT SOLUTIONS LLP helps organizations streamline operations with ERP services,
+                cloud solutions, software development, and ongoing support. We focus on practical
+                execution, clean implementation, and long-term value.
               </p>
-              <p className="mt-3 text-base leading-7 text-slate-600">
-                Our mission is to help businesses transform with practical systems that improve execution,
-                reduce manual effort, and create long-term operational value.
-              </p>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button
+                  variant="primary"
+                  to="/contact"
+                  className="rounded-full bg-sky-600 px-6 py-3 font-semibold text-shadow-sky-600/20 shadow-lg shadow-sky-600/20 transition hover:bg-sky-700"
+                >
+                  Schedule a Meeting
+                </Button>
+
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:border-sky-300 hover:text-sky-700"
+                >
+                  Explore Services
+                </a>
+              </div>
+
+              <div className="mt-8 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">
+                {[
+                  { value: 'ERP', label: 'Implementation' },
+                  { value: 'Cloud', label: 'Solutions' },
+                  { value: 'Support', label: 'Training' },
+                ].map((item) => (
+                  <motion.div
+                    key={item.label}
+                    whileHover={{ y: -4 }}
+                    className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+                  >
+                    <p className="text-lg font-bold text-slate-900">{item.value}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">
+                      {item.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
 
+            {/* Right side */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-[22px] border border-slate-200 bg-[#F0FDFA] p-5"
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="relative"
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0F766E]">
-                Mission Focus
-              </p>
-              <p className="mt-3 text-lg font-semibold leading-7 text-[#1F2937]">
-                Deliver business-ready technology that is dependable, scalable, and aligned with operational reality.
-              </p>
+              <div className="relative mx-auto max-w-[560px]">
+                <div className="absolute -left-6 top-8 h-24 w-24 rounded-full bg-sky-200/60 blur-3xl" />
+                <div className="absolute -right-4 bottom-8 h-28 w-28 rounded-full bg-teal-200/60 blur-3xl" />
 
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                {credentials.map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 text-center">
-                      <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-[#1F2937] text-[#99F6E4]">
-                        <Icon className="text-sm" />
-                      </div>
-                      <p className="mt-2 text-lg font-bold text-slate-900">{item.value}</p>
-                      <p className="mt-1 text-[11px] text-slate-500">{item.label}</p>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="overflow-hidden rounded-[28px] bg-slate-100 shadow-xl md:mt-8">
+                    <img
+                      src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80"
+                      alt="Business workspace"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="rounded-[28px] bg-[#0F172A] p-6 text-white shadow-xl">
+                      <p className="text-sm uppercase tracking-[0.22em] text-sky-300">
+                        Our Approach
+                      </p>
+                      <p className="mt-4 text-lg font-semibold leading-7">
+                        Simple process. Clear communication. Reliable delivery.
+                      </p>
                     </div>
-                  )
-                })}
+
+                    <div className="overflow-hidden rounded-[28px] bg-slate-100 shadow-xl">
+                      <img
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80"
+                        alt="Team collaboration"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-2xl border border-slate-200 bg-white px-5 py-3 shadow-xl"
+                >
+                  <p className="text-sm font-semibold text-slate-900">
+                    Trusted business technology partner
+                  </p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    ERP · Integrations · Custom Software
+                  </p>
+                </motion.div>
               </div>
             </motion.div>
           </div>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {certifications.map((cert) => (
-              <span
-                key={cert}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700"
-              >
-                <FaCertificate className="text-[11px] text-[#0F766E]" />
-                {cert}
-              </span>
-            ))}
-          </div>
         </div>
-      </section> */}
-  <section className="border-t border-slate-200 bg-[linear-gradient(180deg,#F8FAFC_0%,#FFFFFF_100%)] py-10 md:py-12">
+      </section>
+
+      {/* Leadership + cofounders */}
+      <section className="border-t border-slate-200 bg-[linear-gradient(180deg,#F8FAFC_0%,#FFFFFF_100%)] py-10 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
             <motion.div
@@ -372,141 +304,142 @@ function AboutPage() {
               </p>
             </motion.div>
 
-           <div className="rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_-35px_rgba(15,23,42,0.18)] overflow-hidden">
-  <div className="px-6 py-8 sm:px-8 lg:px-10">
-    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0F766E]">
-      Leadership Philosophy
-    </p>
+            <div className="rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_-35px_rgba(15,23,42,0.18)] overflow-hidden">
+              <div className="px-6 py-8 sm:px-8 lg:px-10">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0F766E]">
+                  Leadership Philosophy
+                </p>
 
-    <h2 className="mt-2 text-2xl font-bold text-[#1F2937] md:text-3xl">
-      Practical leadership for business growth
-    </h2>
+                <h2 className="mt-2 text-2xl font-bold text-[#1F2937] md:text-3xl">
+                  Practical leadership for business growth
+                </h2>
 
-    <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
-      Our leadership approach combines practical decision-making, operational discipline,
-      and long-term business thinking to build reliable solutions and strong client relationships.
-    </p>
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
+                  Our leadership approach combines practical decision-making, operational discipline,
+                  and long-term business thinking to build reliable solutions and strong client relationships.
+                </p>
 
-    <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-      {ceoPillars.map((pillar, index) => (
-        <motion.div
-          key={pillar.title}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.05 }}
-          whileHover={{ y: -4 }}
-          className="rounded-[20px] border border-slate-200 bg-slate-50 p-5 transition-shadow duration-300 hover:shadow-md"
-        >
-          <div className="mb-3 h-1.5 w-10 rounded-full bg-[#0F766E]" />
-          <h3 className="text-base font-bold text-[#1F2937]">{pillar.title}</h3>
-          <p className="mt-2 text-sm leading-6 text-slate-600">
-            {pillar.description}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  </div>
+                <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+                  {ceoPillars.map((pillar, index) => (
+                    <motion.div
+                      key={pillar.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ y: -4 }}
+                      className="rounded-[20px] border border-slate-200 bg-slate-50 p-5 transition-shadow duration-300 hover:shadow-md"
+                    >
+                      <div className="mb-3 h-1.5 w-10 rounded-full bg-[#0F766E]" />
+                      <h3 className="text-base font-bold text-[#1F2937]">{pillar.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {pillar.description}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
 
-  <div className="border-t border-slate-200 bg-[#F8FAFC] px-6 py-8 sm:px-8 lg:px-10">
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-          Leadership Team
-        </p>
-        <h3 className="mt-1 text-xl font-bold text-[#1F2937]">Co-Founders</h3>
-      </div>
+              <div className="border-t border-slate-200 bg-[#F8FAFC] px-6 py-8 sm:px-8 lg:px-10">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      Leadership Team
+                    </p>
+                    <h3 className="mt-1 text-xl font-bold text-[#1F2937]">Co-Founders</h3>
+                  </div>
 
-      <p className="max-w-2xl text-sm leading-6 text-slate-600">
-        A committed founding team with complementary strengths across operations,
-        customer engagement, delivery, and business growth.
-      </p>
-    </div>
+                  <p className="max-w-2xl text-sm leading-6 text-slate-600">
+                    A committed founding team with complementary strengths across operations,
+                    customer engagement, delivery, and business growth.
+                  </p>
+                </div>
 
-    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {coFounders.map((person, index) => (
-        <motion.div
-          key={person.name}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.05 }}
-          whileHover={{ y: -6 }}
-          className="group rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg"
-        >
-          <div className="overflow-hidden rounded-[16px] bg-slate-100">
-            <img
-              src={person.image}
-              alt={person.name}
-              className="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-          </div>
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                  {coFounders.map((person, index) => (
+                    <motion.div
+                      key={person.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ y: -6 }}
+                      className="group rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg"
+                    >
+                      <div className="overflow-hidden rounded-[16px] bg-slate-100">
+                        <img
+                          src={person.image}
+                          alt={person.name}
+                          className="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      </div>
 
-          <h3 className="mt-4 text-base font-bold text-[#1F2937]">{person.name}</h3>
-          <p className="mt-1 text-sm font-medium text-[#0F766E]">{person.role}</p>
+                      <h3 className="mt-4 text-base font-bold text-[#1F2937]">{person.name}</h3>
+                      <p className="mt-1 text-sm font-medium text-[#0F766E]">{person.role}</p>
 
-          {person.description && (
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              {person.description}
-            </p>
-          )}
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</div>
+                      {person.description && (
+                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                          {person.description}
+                        </p>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-
       {/* Expertise + compliance */}
-   <section className="border-t border-slate-200 bg-[#f0f7ff] py-7 md:py-8">
+    <section className="border-t border-slate-200 bg-[#f0f7ff] py-6 md:py-8">
   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {/* Experience & Expertise */}
       <div>
-        <h2 className="mb-3 text-xl font-bold text-[#1F2937] md:text-2xl">
+        <h2 className="mb-3 text-lg font-bold text-[#1F2937] md:text-xl">
           Experience & Expertise
         </h2>
 
-        <div className="grid grid-cols-1 gap-2.5">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {expertise.map((item, index) => (
             <motion.div
               key={item}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.04 }}
+              transition={{ delay: index * 0.03 }}
               whileHover={{ y: -2 }}
-              className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
+              className="rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm"
             >
-              <div className="flex items-start gap-2.5">
-                <FaCheckCircle className="mt-0.5 shrink-0 text-[15px] text-[#0F766E]" />
-                <p className="text-sm leading-6 text-slate-700">{item}</p>
+              <div className="flex items-start gap-2">
+                <FaCheckCircle className="mt-0.5 shrink-0 text-[14px] text-[#0F766E]" />
+                <p className="text-xs leading-5 text-slate-700 sm:text-sm">{item}</p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
 
+      {/* Compliance & Process */}
       <div>
-        <h2 className="mb-3 text-xl font-bold text-[#1F2937] md:text-2xl">
+        <h2 className="mb-3 text-lg font-bold text-[#1F2937] md:text-xl">
           Compliance & Process
         </h2>
 
-        <div className="grid gap-2.5">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {compliance.map((item, index) => (
             <motion.div
               key={item}
-              initial={{ opacity: 0, x: 12 }}
+              initial={{ opacity: 0, x: 10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.04 }}
+              transition={{ delay: index * 0.03 }}
               whileHover={{ x: 2 }}
-              className="flex items-start gap-2.5 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
+              className="flex items-start gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm"
             >
-              <MdOutlineSecurity className="mt-0.5 shrink-0 text-[16px] text-[#0F766E]" />
-              <p className="text-sm leading-6 text-slate-700">{item}</p>
+              <MdOutlineSecurity className="mt-0.5 shrink-0 text-[15px] text-[#0F766E]" />
+              <p className="text-xs leading-5 text-slate-700 sm:text-sm">{item}</p>
             </motion.div>
           ))}
         </div>
@@ -514,12 +447,13 @@ function AboutPage() {
     </div>
   </div>
 </section>
-
       {/* Partners + stats */}
       <section className="overflow-hidden border-t border-slate-200 bg-[#f6f9fd] py-10 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
-            <h2 className="mb-3 text-2xl font-bold text-[#1F2937] md:text-3xl">Partners & Team Strength</h2>
+            <h2 className="mb-3 text-2xl font-bold text-[#1F2937] md:text-3xl">
+              Partners & Team Strength
+            </h2>
             <p className="mx-auto max-w-2xl text-sm text-slate-600 md:text-base">
               We work across leading software ecosystems while supporting clients through a strong implementation team.
             </p>
@@ -580,9 +514,6 @@ function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Leadership + cofounders */}
-    
 
       {/* Values */}
       <section className="border-t border-slate-200 bg-white py-10 md:py-12">
