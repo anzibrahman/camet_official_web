@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "seed:solutions": "node scripts/seedSolutions.js",
+    "seed:products": "node scripts/seedProducts.js",
+    "seed:addons": "node scripts/seedAddons.js",
+    "update:contact-number": "node scripts/updateContactNumber.js",
+    "seed:tallyprime-customizations": "node scripts/seedTallyPrimeCustomizations.js"
   },
   "keywords": [],
   "author": "",

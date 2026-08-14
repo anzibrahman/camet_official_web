@@ -17,6 +17,7 @@ import {
 import { MdMiscellaneousServices } from 'react-icons/md'
 import { BsFillGearFill } from 'react-icons/bs'
 import { HiOutlineWrenchScrewdriver } from 'react-icons/hi2'
+import ContentManager from '@/components/admin/ContentManager'
 
 const STATIC_ADMIN = {
   username: 'admin',
@@ -326,6 +327,16 @@ export default function AdminHeroEditor() {
                 Products
               </button>
               <button
+                onClick={() => setActiveTab('content')}
+                type="button"
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  activeTab === 'content' ? 'bg-blue-600 text-white' : 'border border-slate-300 text-slate-700 hover:bg-slate-50'
+                }`}
+              >
+                <FaImages className="inline mr-2" />
+                Solutions & Content
+              </button>
+              <button
                 onClick={() => setIsLoggedIn(false)}
                 type="button"
                 className="px-4 py-2 rounded-lg border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50"
@@ -452,6 +463,8 @@ export default function AdminHeroEditor() {
             </div>
           </div>
         )}
+
+        {activeTab === 'content' && <ContentManager />}
       </div>
     </div>
   )

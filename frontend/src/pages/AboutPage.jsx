@@ -12,10 +12,10 @@ import {
   FaCheckCircle,
   FaMicrosoft,
 } from 'react-icons/fa'
-import { SiSap, SiZoho } from 'react-icons/si'
+import {  SiZoho } from 'react-icons/si'
 import { MdOutlineSecurity, MdBusinessCenter } from 'react-icons/md'
 import Button from '../components/common/Button'
-
+import { FaChartLine } from 'react-icons/fa'
 import ceoImg from '../assets/image3.png'
 import coFounder1Img from '../assets/WhatsApp Image 2026-07-28 at 2.38.57 PM (1).jpeg'
 import coFounder2Img from '../assets/WhatsApp Image 2026-07-14 at 11.41.54 AM.jpeg'
@@ -80,15 +80,15 @@ function AboutPage() {
       desc: 'Supports business productivity, collaboration, and modern digital infrastructure alignment.',
     },
     {
-      name: 'SAP',
-      icon: SiSap,
+      name: 'BIZ ANALYST',
+      icon: FaChartLine,
       desc: 'Brings enterprise process discipline and large-scale workflow understanding into solution planning.',
     },
-    {
-      name: 'Zoho',
-      icon: SiZoho,
-      desc: 'Enables CRM, workflow, and business productivity integration opportunities.',
-    },
+    // {
+    //   name: 'Zoho',
+    //   icon: SiZoho,
+    //   desc: 'Enables CRM, workflow, and business productivity integration opportunities.',
+    // },
     {
       name: 'Tally',
       icon: MdBusinessCenter,
@@ -144,8 +144,8 @@ function AboutPage() {
 
   const teamStats = [
     { value: '40+', label: 'Implementation & Support Professionals' },
-    { value: '12+', label: 'Domain Specialists' },
-    { value: '250+', label: 'Active Business Relationships' },
+    { value: '10+', label: 'Domain Specialists' },
+    { value: '1000+', label: 'Active Business Relationships' },
     { value: '4', label: 'Leadership Verticals' },
   ]
 

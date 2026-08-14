@@ -62,6 +62,13 @@ const productSchema = new mongoose.Schema({
   }],
   ctaTitle: String,
   ctaText: String,
+  heroImage: { type: String, default: '' },
+  gallery: [{
+    url: { type: String, required: true },
+    publicId: { type: String, default: '' },
+    resourceType: { type: String, enum: ['image', 'video'], default: 'image' },
+    alt: { type: String, default: '' }
+  }],
   isActive: {
     type: Boolean,
     default: true

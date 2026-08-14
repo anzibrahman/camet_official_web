@@ -5,6 +5,8 @@ import { fileURLToPath } from 'url'
 import heroRoutes from './routes/heroRoutes.js'
 import contactRoutes from './routes/contact.js' // Add this import
 import productRoutes from './routes/productRoutes.js'
+import contentRoutes from './routes/contentRoutes.js'
+import mediaRoutes from './routes/mediaRoutes.js'
 const app = express()
 
 app.use(cors())
@@ -14,6 +16,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api', heroRoutes)
 app.use('/api', contactRoutes)
 app.use('/api', productRoutes) // Add this line to register product routes
+app.use('/api', contentRoutes)
+app.use('/api', mediaRoutes)
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

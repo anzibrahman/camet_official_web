@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import Button from '../components/common/Button'
 import api from '@/utils/api'
 
-const PHONE_DISPLAY = '9072632605'
-const PHONE_TEL = '9072632605'
-const WHATSAPP_NUMBER = '9072632605'
+const PHONE_DISPLAY = '9072632603'
+const PHONE_TEL = '9072632603'
+const WHATSAPP_NUMBER = '919072632603'
 const EMAIL = 'Admin@camet.in'
 
 // Registered office address for the map
