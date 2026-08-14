@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaStar } from 'react-icons/fa'
+import api from '@/utils/api'
 
 const fontDisplay = { fontFamily: '"Plus Jakarta Sans", "Poppins", sans-serif' }
 const fontMono = { fontFamily: '"JetBrains Mono", "Menlo", monospace' }
@@ -146,6 +147,20 @@ function MarqueeRow({ items, duration = 28 }) {
 }
 
 function Testimonials() {
+  const [databaseReviews, setDatabaseReviews] = useState([])
+
+  useEffect(() => {
+    api.get('/reviews')
+      .then(({ data }) => setDatabaseReviews((data.data || []).map((review, index) => ({
+        ...review,
+        photo: review.photoUrl || 'https://placehold.co/200x200/e2e8f0/475569?text=Client',
+        color: accents[index % accents.length],
+      }))))
+      .catch((error) => console.error('Could not load client reviews:', error))
+  }, [])
+
+  const displayedTestimonials = [...databaseReviews, ...testimonials]
+
   return (
     <section
       className="relative overflow-hidden py-20 md:py-24"
@@ -230,7 +245,7 @@ function Testimonials() {
       </div>
 
       <div className="relative z-20">
-        <MarqueeRow items={testimonials} duration={28} />
+        <MarqueeRow items={displayedTestimonials} duration={28} />
       </div>
     </section>
   )

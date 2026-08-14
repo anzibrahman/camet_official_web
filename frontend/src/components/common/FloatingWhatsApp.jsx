@@ -15,8 +15,7 @@ function FloatingWhatsApp() {
       className="pointer-events-none fixed right-4 bottom-20 z-50 flex flex-col items-center gap-2 sm:right-6 sm:bottom-6"
     >
       <motion.a
-        href="tel:9072632605
-"
+        href="tel:9072632603"
         aria-label="Call CAMET"
         title="Call CAMET"
         whileHover={{ scale: 1.06 }}
@@ -27,9 +26,11 @@ function FloatingWhatsApp() {
       </motion.a>
 
       <motion.a
-        href="#"
-        aria-label="WhatsApp chat coming soon"
-        title="WhatsApp chat coming soon"
+        href="https://wa.me/919072632603?text=Hello%20CAMET%20IT%20Solutions%2C%20I%20want%20to%20know%20more%20about%20your%20services."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with CAMET on WhatsApp"
+        title="Chat on WhatsApp"
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.96 }}
         className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#41D856] text-white shadow-[0_10px_24px_rgba(65,216,86,0.32)] transition-colors duration-300 hover:bg-[#35c94a] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#41D856]/30"

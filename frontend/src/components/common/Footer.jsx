@@ -17,7 +17,7 @@ function Footer() {
     { label: 'Services', path: '/services' },
     { label: 'Gallery', path: '/gallery' },
     { label: 'Contact', path: '/contact' },
-    { label: 'Admin', path: '/Admin' }
+    { label: 'Admin', path: '/Admin' },
   ]
 
   const productLinks = [
@@ -40,13 +40,22 @@ function Footer() {
 
   const softwareLinks = [
     { label: 'Hotel Management System', path: '/products/hotel-management-system' },
+    { label: 'Laboratory Management System', path: '/products/laboratory-management-system' },
+    { label: 'Industry-Specific Solutions', path: '/products/industry-specific-solutions' },
+  ]
+
+  const phoneGroups = [
     {
-      label: 'Laboratory Management System',
-      path: '/products/laboratory-management-system',
+      title: 'Sales',
+      numbers: ['7736771444', '7736772444'],
     },
     {
-      label: 'Industry-Specific Solutions',
-      path: '/products/industry-specific-solutions',
+      title: 'Support / Services',
+      numbers: ['9072632605', '9072632606', '9072632607'],
+    },
+    {
+      title: 'Integrated Solutions',
+      numbers: ['9072632602', '9072632603', '9072632604'],
     },
   ]
 
@@ -57,6 +66,7 @@ function Footer() {
 
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-2 xl:grid-cols-6">
+          {/* Brand & Intro */}
           <div className="xl:col-span-2">
             <span className="inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-white/70">
               CAMET IT SOLUTIONS LLP
@@ -81,6 +91,7 @@ function Footer() {
             </Link>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
               Quick Links
@@ -99,6 +110,7 @@ function Footer() {
             </ul>
           </div>
 
+          {/* Tally Products */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
               Tally Products
@@ -117,6 +129,7 @@ function Footer() {
             </ul>
           </div>
 
+          {/* Services */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
               Services
@@ -135,6 +148,7 @@ function Footer() {
             </ul>
           </div>
 
+          {/* Software Solutions + Contact */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
               Software Solutions
@@ -152,31 +166,62 @@ function Footer() {
               ))}
             </ul>
 
-            <div className="mt-8">
-              <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
-                Contact
-              </h4>
-              <ul className="mt-4 space-y-3 text-sm text-white/65">
-                <li className="flex items-start gap-3">
-                  <FaPhoneAlt className="mt-1 shrink-0 text-[12px] text-cyan-300" />
-                  <span>9072632605
-9072632606
-9072632607
-</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <FaEnvelope className="mt-1 shrink-0 text-[12px] text-cyan-300" />
-                  <span>Admin@camet.in</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <FaMapMarkerAlt className="mt-1 shrink-0 text-[12px] text-cyan-300" />
-                  <span> Kalamassery,Kerala, India</span>
-                </li>
-              </ul>
-            </div>
+            {/* Contact Section */}
+           {/* Contact Section */}
+<div className="mt-8">
+  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
+    Contact
+  </h4>
+
+  <div className="mt-4 space-y-4">
+    {/* Email */}
+    <div className="flex items-start gap-3 text-sm text-white/65">
+      <FaEnvelope className="mt-1 shrink-0 text-[12px] text-cyan-300" />
+      <a href="mailto:Admin@camet.in" className="transition hover:text-white">
+        Admin@camet.in
+      </a>
+    </div>
+
+    {/* Address */}
+    <div className="flex items-start gap-3 text-sm text-white/65">
+      <FaMapMarkerAlt className="mt-1 shrink-0 text-[12px] text-cyan-300" />
+      <span>Kalamassery, Kerala, India</span>
+    </div>
+
+    {/* Phone Groups */}
+ 
+  </div>
+</div>
+
+
           </div>
         </div>
+   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {phoneGroups.map((group) => (
+        <div
+          key={group.title}
+          className=" bg-white/5 p-3"
+        >
+          <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
+            <FaPhoneAlt className="text-[11px] text-cyan-300" />
+            {group.title}
+          </div>
 
+          <div className="flex flex-col gap-2">
+            {group.numbers.map((num) => (
+              <a
+                key={num}
+                href={`tel:${num}`}
+                className="inline-flex w-fit  px-3 py-1 text-xs text-white/70 transition"
+              >
+                {num}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+        {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between gap-3 pt-6 text-center sm:flex-row sm:text-left">
           <p className="text-sm text-white/50">
             &copy; {currentYear} CAMET IT SOLUTIONS LLP. All rights reserved.

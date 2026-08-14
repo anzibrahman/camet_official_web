@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+.field {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+}
+
+.field:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+  border-color: #3b82f6;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Josefin+Sans:wght@300;400;500;600&family=Jost:wght@300;400;500;600;700&display=swap');
 
 body {

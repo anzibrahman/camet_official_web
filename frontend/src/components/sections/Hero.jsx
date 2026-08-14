@@ -63,11 +63,11 @@ function Hero() {
     heroData?.subtitle ||
     "TallyPrime, ERP, add-ons, and custom software solutions designed to simplify operations and accelerate your business.";
   const primaryCtaText = heroData?.primaryCtaText || "Schedule a Call";
-  const primaryCtaLink = heroData?.primaryCtaLink || "tel:9072632605";
+  const primaryCtaLink = heroData?.primaryCtaLink || "tel:9072632603";
   const secondaryCtaText = heroData?.secondaryCtaText || "Chat on WhatsApp";
   const secondaryCtaLink =
     heroData?.secondaryCtaLink ||
-    "https://wa.me/9072632605?text=Hello%20CAMET%20IT%20Solutions%2C%20I%20want%20to%20know%20more%20about%20your%20services.";
+    "https://wa.me/919072632603?text=Hello%20CAMET%20IT%20Solutions%2C%20I%20want%20to%20know%20more%20about%20your%20services.";
   const bannerImageUrl = heroData?.bannerImageUrl || heroImage;
 
   return (

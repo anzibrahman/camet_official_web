@@ -11,7 +11,7 @@ import ContactPage from './pages/ContactPage'
 import ProductsPage from './pages/ProductsPage'
 import GalleryPage from './pages/GalleryPage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
-
+import TallyAddonsPage from './pages/TallyAddonsPage'
 import SupportPage from './pages/SupportPage'
 import AdminHeroEditor from './pages/AdminHeroEditor'
 import SolutionDetails from './pages/SolutionDetails'
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       { path: '/products/:slug', element: <ProductDetailsPage /> },
       { path: '/solutions/:slug', element: <SolutionDetails /> },
       { path: '/Admin', element: <AdminHeroEditor /> }, 
-        
+      { path: '/solutions/tally-addons', element: <TallyAddonsPage /> }
     ]
   }
 ])
