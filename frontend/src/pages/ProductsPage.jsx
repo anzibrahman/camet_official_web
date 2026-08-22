@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import Button from '../components/common/Button'
+import { getProductsApi } from '@/services/productApi'
 
 function ProductsPage() {
-  const products = [
+  const fallbackProducts = [
     {
       title: 'TallyPrime Rel 7.0',
       category: 'Core Product',
@@ -34,6 +36,15 @@ function ProductsPage() {
       description: 'Track full transaction history including alterations, inventory changes, ledger updates, rate, and amount changes.',
     },
   ]
+  const [databaseProducts, setDatabaseProducts] = useState([])
+
+  useEffect(() => {
+    getProductsApi()
+      .then(({ data }) => setDatabaseProducts(data?.data || []))
+      .catch((error) => console.error('Could not load products:', error))
+  }, [])
+
+  const products = databaseProducts.length ? databaseProducts : fallbackProducts
 
   return (
     <div className="bg-slate-50 min-h-screen pt-[76px]">
@@ -56,7 +67,7 @@ function ProductsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {products.map((item, index) => (
             <motion.div
-              key={item.title}
+              key={item._id || item.slug || item.title}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -66,8 +77,8 @@ function ProductsPage() {
               <div className="text-xs font-semibold uppercase tracking-wide text-red-600 mb-3">
                 {item.category}
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-              <p className="text-slate-600 leading-relaxed">{item.description}</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{item.label || item.title}</h3>
+              <p className="text-slate-600 leading-relaxed">{item.description || item.desc}</p>
             </motion.div>
           ))}
         </div>

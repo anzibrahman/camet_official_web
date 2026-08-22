@@ -1,10 +1,22 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { solutions } from '@/data/solutions'
+import api from '@/utils/api'
+import { FaLaptopCode } from 'react-icons/fa'
 import Button from '../components/common/Button'
 
 function SolutionsPage() {
-  const filteredSolutions = solutions.filter((item) => item.slug !== 'all-solutions')
+  const [databaseSolutions, setDatabaseSolutions] = useState([])
+
+  useEffect(() => {
+    api.get('/solutions')
+      .then(({ data }) => setDatabaseSolutions(data?.data || []))
+      .catch((error) => console.error('Could not load solutions:', error))
+  }, [])
+
+  const filteredSolutions = (databaseSolutions.length ? databaseSolutions : solutions)
+    .filter((item) => item.slug !== 'all-solutions')
 
   return (
     <main className="min-h-screen bg-slate-50 pt-[76px] text-slate-900">
@@ -34,7 +46,7 @@ function SolutionsPage() {
       <section className="py-16">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 md:grid-cols-2 lg:px-8 xl:grid-cols-3">
           {filteredSolutions.map((item, index) => {
-            const Icon = item.icon
+            const Icon = typeof item.icon === 'function' ? item.icon : FaLaptopCode
 
             return (
               <motion.div
