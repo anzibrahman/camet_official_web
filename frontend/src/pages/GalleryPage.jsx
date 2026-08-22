@@ -8,18 +8,9 @@ import api from "@/utils/api";
    ============================================================ */
 
 // Category definitions
-const CATEGORIES = [
-  { id: "all", label: "All" },
-  { id: "camp", label: "Camp", color: "#55C2E8" },
-  { id: "incidents", label: "Incidents", color: "#F2766B" },
-  { id: "lunch", label: "Team Lunch & Meetings", color: "#F2B84B" },
-  { id: "achievements", label: "Achievements", color: "#6FA8FF" },
-  { id: "trip", label: "Annual Trip", color: "#A982F7" },
-  { id: "christmas", label: "Christmas", color: "#F06B9A" },
-];
+const CATEGORIES = [{ id: "all", label: "All" }];
 
-// Sample gallery items
-const ITEMS = [
+/* Removed sample gallery items. Gallery content is database-only.
   {
     cat: "camp",
     title: "First night around the fire",
@@ -163,7 +154,7 @@ const ITEMS = [
     date: "Dec 2024",
     img: "https://picsum.photos/seed/xmas4/500/630",
   },
-];
+*/
 
 const ROTATIONS = [-4, -2.5, -1, 0, 1.5, 2.5, 4];
 
@@ -193,7 +184,7 @@ export default function TeamGallery() {
   }, []);
 
   const allItems = useMemo(() => {
-    return [...databaseItems, ...ITEMS];
+    return databaseItems;
   }, [databaseItems]);
 
   const categories = useMemo(() => {

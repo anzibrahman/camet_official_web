@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Header from '@/components/common/Header'
 import { products } from '@/data/Product'
+import api from '@/utils/api'
 import { useParams, Link } from 'react-router-dom'
 import { FaCheckCircle, FaArrowRight, FaLayerGroup } from 'react-icons/fa'
 
@@ -258,7 +259,15 @@ function getPricingSummary(pricing) {
 function ProductDetailsPage() {
   useFontLoader()
   const { slug } = useParams()
-  const product = products.find((item) => item.slug === slug)
+  const [serverProduct, setServerProduct] = useState({ slug: '', data: null })
+  const fallbackProduct = products.find((item) => item.slug === slug)
+  const product = serverProduct.slug === slug ? (serverProduct.data || fallbackProduct) : fallbackProduct
+
+  useEffect(() => {
+    api.get(`/products/${slug}`)
+      .then(({ data }) => setServerProduct({ slug, data: data?.data || null }))
+      .catch((error) => console.error('Could not load product:', error))
+  }, [slug])
 
   if (!product) {
     return (

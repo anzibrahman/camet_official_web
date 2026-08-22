@@ -4,6 +4,7 @@ import Header from '@/components/common/Header'
 import { ArrowLeft, ArrowUpRight, CircleCheck } from 'lucide-react'
 import { FaLayerGroup } from 'react-icons/fa'
 import { solutions } from '@/data/solutions'
+import api from '@/utils/api'
 
 const headingFont = { fontFamily: "'General Sans', 'Inter', sans-serif" }
 const bodyFont = { fontFamily: "'Inter', system-ui, sans-serif" }
@@ -232,7 +233,15 @@ function SolutionSpotlightCard({ solution }) {
 function SolutionDetails() {
   useFontLoader()
   const { slug } = useParams()
-  const solution = solutions.find((item) => item.slug === slug)
+  const [serverSolution, setServerSolution] = useState({ slug: '', data: null })
+  const fallbackSolution = solutions.find((item) => item.slug === slug)
+  const solution = serverSolution.slug === slug ? (serverSolution.data || fallbackSolution) : fallbackSolution
+
+  useEffect(() => {
+    api.get(`/solutions/${slug}`)
+      .then(({ data }) => setServerSolution({ slug, data: data?.data || null }))
+      .catch((error) => console.error('Could not load solution:', error))
+  }, [slug])
 
   if (!solution) {
     return (
@@ -268,7 +277,7 @@ function SolutionDetails() {
     )
   }
 
-  const SolutionIcon = solution.icon
+  const SolutionIcon = typeof solution.icon === 'function' ? solution.icon : FaLayerGroup
   const marqueeItems = solution.features?.length ? solution.features : [solution.label]
 
   return (

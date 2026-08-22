@@ -8,8 +8,24 @@ const TALLY_POSTER_URL =
   "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85";
 
 
-  const TALLY_ADDON_VIDEO_URL =
+const TALLY_ADDON_VIDEO_URL =
   "https://www.youtube.com/embed/41_rsgNRRCg";
+
+const isEmbeddedVideo = (url = "") =>
+  /(?:youtu\.be|youtube\.com|vimeo\.com)/i.test(url);
+
+const toEmbedUrl = (url = "") => {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname.includes("youtu.be")) return `https://www.youtube.com/embed/${parsed.pathname.slice(1)}`;
+    if (parsed.hostname.includes("youtube.com") && !parsed.pathname.startsWith("/embed/")) {
+      const id = parsed.searchParams.get("v");
+      return id ? `https://www.youtube.com/embed/${id}` : url;
+    }
+    if (parsed.hostname.includes("vimeo.com")) return `https://player.vimeo.com/video/${parsed.pathname.split("/").filter(Boolean).pop()}`;
+  } catch { return url; }
+  return url;
+};
 
 
   const fallbackAddons = [
@@ -289,8 +305,8 @@ function TallyAddonsPage() {
         ...item,
         displayOrder: index + 1,
         isActive: true,
-        mediaUrl: "",
-        mediaType: "image",
+        mediaUrl: item.mediaUrl || "",
+        mediaType: item.mediaType || (isEmbeddedVideo(item.mediaUrl) ? "youtube" : "image"),
       }));
     }
 
@@ -301,13 +317,10 @@ function TallyAddonsPage() {
         points: Array.isArray(item.points) ? item.points : [],
         displayOrder: item.displayOrder || index + 1,
         mediaUrl:
-          item.video?.url ||
+          toEmbedUrl(item.video?.url) ||
           item.thumbnail?.url ||
           "",
-        mediaType:
-          item.video?.resourceType ||
-          item.thumbnail?.resourceType ||
-          "image",
+        mediaType: isEmbeddedVideo(item.video?.url) ? "youtube" : (item.video?.resourceType || item.thumbnail?.resourceType || "image"),
       }))
       .sort((a, b) => a.displayOrder - b.displayOrder);
   }, [backendAddons]);
