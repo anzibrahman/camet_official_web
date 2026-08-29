@@ -122,22 +122,22 @@ function AboutPage() {
   const coFounders = [
     {
       name: 'Muhammed Riyas',
-      role: 'Strategy & Business Growth',
+    
       image: coFounder1Img,
     },
     {
       name: 'Umesh',
-      role: 'Technology & Architecture',
+    
       image: coFounder2Img,
     },
     {
       name: 'Sadhakhath',
-      role: 'Implementation & Delivery',
+    
       image: coFounder3Img,
     },
     {
       name: 'Ebby Manjooran',
-      role: 'Support & Client Success',
+     
       image: coFounder4Img,
     },
   ]
