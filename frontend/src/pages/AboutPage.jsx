@@ -21,7 +21,7 @@ import coFounder1Img from '../assets/WhatsApp Image 2026-07-28 at 2.38.57 PM (1)
 import coFounder2Img from '../assets/WhatsApp Image 2026-07-14 at 11.41.54 AM.jpeg'
 import coFounder3Img from '../assets/image.png'
 import coFounder4Img from '../assets/ChatGPT Image Jul 21, 2026, 02_14_10 PM.png'
-
+import coFounder5Img from '../assets/WhatsApp Image 2026-08-20 at 12.24.34 PM.jpeg'
 function AboutPage() {
   const values = [
     {
@@ -140,6 +140,12 @@ function AboutPage() {
      
       image: coFounder4Img,
     },
+     {
+      name: 'Naison Francis',
+      role: 'Accounts &  Business Growth',
+      image: coFounder5Img,
+    },
+
   ]
 
   const teamStats = [
@@ -355,36 +361,41 @@ function AboutPage() {
                   </p>
                 </div>
 
-                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                  {coFounders.map((person, index) => (
-                    <motion.div
-                      key={person.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.05 }}
-                      whileHover={{ y: -6 }}
-                      className="group rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg"
-                    >
-                      <div className="overflow-hidden rounded-[16px] bg-slate-100">
-                        <img
-                          src={person.image}
-                          alt={person.name}
-                          className="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                        />
-                      </div>
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+  {coFounders.map((person, index) => (
+    <motion.div
+      key={person.name}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05 }}
+      whileHover={{ y: -6 }}
+      className="group min-w-0 rounded-[20px] border border-slate-200 bg-white p-3 shadow-sm transition-all duration-300 hover:shadow-lg"
+    >
+      <div className="overflow-hidden rounded-[16px] bg-slate-100">
+        <img
+          src={person.image}
+          alt={person.name}
+          className="h-[190px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
 
-                      <h3 className="mt-4 text-base font-bold text-[#1F2937]">{person.name}</h3>
-                      <p className="mt-1 text-sm font-medium text-[#0F766E]">{person.role}</p>
+      <h3 className="mt-3 truncate text-sm font-bold text-[#1F2937]">
+        {person.name}
+      </h3>
 
-                      {person.description && (
-                        <p className="mt-3 text-sm leading-6 text-slate-600">
-                          {person.description}
-                        </p>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
+      <p className="mt-1 text-xs font-medium leading-5 text-[#0F766E]">
+        {person.role}
+      </p>
+
+      {person.description && (
+        <p className="mt-2 text-xs leading-5 text-slate-600">
+          {person.description}
+        </p>
+      )}
+    </motion.div>
+  ))}
+</div>
               </div>
             </div>
           </div>

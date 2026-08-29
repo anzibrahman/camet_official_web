@@ -11,7 +11,7 @@ const CONTACTS = [
   {
     icon: FaPhoneAlt,
     label: 'Phone',
-    value: '9072632605, 9072632606'
+    value: '9072632602, 9072632603'
   },
   { icon: FaEnvelope, label: 'Email', value: 'Admin@camet.in' },
   { icon: FaMapMarkerAlt, label: 'Location', value: 'Kalamassery,Kerala, India' },
