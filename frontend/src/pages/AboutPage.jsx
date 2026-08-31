@@ -142,7 +142,7 @@ function AboutPage() {
     },
      {
       name: 'Naison Francis',
-      role: 'Accounts &  Business Growth',
+    
       image: coFounder5Img,
     },
 
