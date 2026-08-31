@@ -55,7 +55,7 @@ function Hero() {
     );
   }
 
-  const badgeText = heroData?.badgeText || "CAMET IT SOLUTIONS LLP";
+  const companyName = "CAMET IT SOLUTIONS LLP";
   const titleLine1 = heroData?.titleLine1 || "Software that makes";
   const titleLine2 = heroData?.titleLine2 || "business feel";
   const titleHighlight = heroData?.titleHighlight || "elegantly efficient.";
@@ -86,8 +86,8 @@ function Hero() {
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-5 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16 lg:px-12 lg:pt-24">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.28em] text-white/75 backdrop-blur-md">
-              {badgeText}
+            <div className="inline-flex items-center rounded-full border border-cyan-300/55 bg-cyan-300/15 px-5 py-2.5 text-sm font-bold uppercase tracking-[0.24em] text-cyan-100 shadow-[0_0_28px_rgba(103,232,249,0.2)] backdrop-blur-md sm:text-base">
+              {companyName}
             </div>
 
             <h1

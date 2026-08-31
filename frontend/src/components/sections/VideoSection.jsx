@@ -39,7 +39,7 @@ function VideoSection() {
 
   useEffect(() => {
     api.get('/addons')
-      .then(({ data }) => setVideos((data?.data || []).filter((addon) => addon.video?.url)))
+      .then(({ data }) => setVideos((data?.data || []).filter((addon) => addon.isFavorite && addon.video?.url)))
       .catch((error) => console.error('Could not load add-on videos:', error))
   }, [])
 
@@ -60,7 +60,7 @@ function VideoSection() {
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-600">TallyPrime add-ons</p>
           <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Add-on video demonstrations</h2>
-          <p className="mt-2 text-slate-600">Browse videos added from the admin panel.</p>
+          <p className="mt-2 text-slate-600">Browse videos marked as favorites in the admin panel.</p>
         </div>
         {videos.length > 1 && <div className="flex shrink-0 gap-2" aria-label="Add-on video controls">
           <button type="button" onClick={() => move(-1)} aria-label="Previous add-on videos" className="grid h-10 w-10 place-items-center rounded-full border border-slate-300 bg-white text-slate-700 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white">

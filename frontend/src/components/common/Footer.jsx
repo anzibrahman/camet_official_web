@@ -200,9 +200,15 @@ function Footer() {
       {phoneGroups.map((group) => (
         <div
           key={group.title}
-          className=" bg-white/5 p-3"
+          className={`rounded-xl border p-4 ${
+            group.title === 'Support / Services'
+                ? 'border-cyan-300/60 bg-cyan-300/10 shadow-[0_0_26px_rgba(103,232,249,0.13)]'
+                : 'border-white/10 bg-white/5'
+          }`}
         >
-          <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
+          <div className={`mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] ${
+            group.title === 'Support / Services' ? 'text-cyan-200' : 'text-white/80'
+          }`}>
             <FaPhoneAlt className="text-[11px] text-cyan-300" />
             {group.title}
           </div>
@@ -212,7 +218,11 @@ function Footer() {
               <a
                 key={num}
                 href={`tel:${num}`}
-                className="inline-flex w-fit  px-3 py-1 text-xs text-white/70 transition"
+                className={`inline-flex w-fit rounded-full border px-3 py-1.5 text-sm font-semibold transition hover:-translate-y-0.5 ${
+                  group.title === 'Support / Services'
+                      ? 'border-cyan-200/50 bg-cyan-200/15 text-cyan-50 hover:bg-cyan-200/25'
+                      : 'border-white/10 text-white/70 hover:border-white/30 hover:text-white'
+                }`}
               >
                 {num}
               </a>

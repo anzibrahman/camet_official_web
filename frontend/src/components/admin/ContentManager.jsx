@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa'
+import { FaEdit, FaHeart, FaPlus, FaRegHeart, FaTrash } from 'react-icons/fa'
 import { createContent, deleteContent, getAdminContent, updateContent } from '@/services/contentApi'
 import { uploadMediaToCloudinary } from '@/utils/uploadCloudinary'
 
@@ -66,6 +66,20 @@ export default function ContentManager() {
     try { await deleteContent(type, id); await load() } catch { setError('Could not delete item') }
   }
 
+  const toggleFavorite = async (item) => {
+    if (!item.video?.url) return
+    setLoading(true)
+    setError('')
+    try {
+      await updateContent('addons', item._id, { isFavorite: !item.isFavorite })
+      await load()
+    } catch (err) {
+      setError(err.response?.data?.message || 'Could not update favorite video')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const mediaLabel = type === 'gallery' || type === 'reviews' ? 'Photo or video' : 'Video (optional)'
   return <div>
     <div className="mb-6 flex flex-wrap gap-2">{Object.entries(configs).map(([key, item]) => <button key={key} onClick={() => setType(key)} className={`rounded-lg px-4 py-2 text-sm font-medium ${type === key ? 'bg-blue-600 text-white' : 'border border-slate-300 bg-white text-slate-700'}`}>{item.label}</button>)}</div>
@@ -83,7 +97,7 @@ export default function ContentManager() {
           <button disabled={loading} className="w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-60">{loading ? 'Saving…' : editing ? `Update ${config.singular}` : `Add ${config.singular}`}</button>
         </div>
       </form>
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="border-b border-slate-200 p-5"><h3 className="font-bold">Saved {config.label}</h3></div><div className="max-h-[760px] divide-y overflow-y-auto">{items.map((item) => <div key={item._id} className="flex items-center justify-between gap-4 p-4"><div className="min-w-0"><p className="truncate font-medium">{item.label || item.title || item.name}</p><p className="truncate text-sm text-slate-500">{item.slug || item.company || item.category}</p></div><div className="flex gap-3"><button onClick={() => edit(item)} className="text-blue-600"><FaEdit /></button><button onClick={() => remove(item._id)} className="text-red-600"><FaTrash /></button></div></div>)}{!loading && !items.length && <p className="p-8 text-center text-sm text-slate-500">No {config.label.toLowerCase()} yet.</p>}</div></div>
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="border-b border-slate-200 p-5"><h3 className="font-bold">Saved {config.label}</h3></div><div className="max-h-[760px] divide-y overflow-y-auto">{items.map((item) => <div key={item._id} className="flex items-center justify-between gap-4 p-4"><div className="min-w-0"><p className="truncate font-medium">{item.label || item.title || item.name}</p><p className="truncate text-sm text-slate-500">{item.slug || item.company || item.category}</p></div><div className="flex gap-3">{type === 'addons' && <button type="button" onClick={() => toggleFavorite(item)} disabled={!item.video?.url || loading} title={item.video?.url ? (item.isFavorite ? 'Remove from home-page favorite videos' : 'Show in home-page favorite videos') : 'Add a video URL before favoriting'} aria-label={item.video?.url ? (item.isFavorite ? `Remove ${item.title} from favorite videos` : `Add ${item.title} to favorite videos`) : `${item.title} has no video URL`} className={`transition disabled:cursor-not-allowed disabled:opacity-30 ${item.isFavorite ? 'text-rose-500' : 'text-slate-400 hover:text-rose-500'}`}>{item.isFavorite ? <FaHeart /> : <FaRegHeart />}</button>}<button onClick={() => edit(item)} className="text-blue-600"><FaEdit /></button><button onClick={() => remove(item._id)} className="text-red-600"><FaTrash /></button></div></div>)}{!loading && !items.length && <p className="p-8 text-center text-sm text-slate-500">No {config.label.toLowerCase()} yet.</p>}</div></div>
     </div>
   </div>
 }

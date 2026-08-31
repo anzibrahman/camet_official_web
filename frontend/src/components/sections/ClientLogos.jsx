@@ -65,7 +65,7 @@ function ClientItem({ image, name }) {
 
 export default function ClientLogos() {
   return (
-    <div className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-white py-10 pb-16 md:py-12 md:pb-20">
       <motion.div
         className="flex w-max items-center gap-6 px-4"
         animate={{ x: ["0%", "-50%"] }}
@@ -83,6 +83,6 @@ export default function ClientLogos() {
           />
         ))}
       </motion.div>
-    </div>
+    </section>
   );
 }

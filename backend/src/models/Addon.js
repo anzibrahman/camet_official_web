@@ -14,6 +14,7 @@ const addonSchema = new mongoose.Schema({
   points: [{ type: String, trim: true }],
   video: { type: mediaSchema, default: null },
   thumbnail: { type: mediaSchema, default: null },
+  isFavorite: { type: Boolean, default: false },
   displayOrder: { type: Number, default: 0 },
   isActive: { type: Boolean, default: true },
 }, { timestamps: true })

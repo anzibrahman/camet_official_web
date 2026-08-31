@@ -108,23 +108,22 @@ function TestimonialCard({ t, onToggle }) {
     >
       {/* Client Name and Image */}
       <div className="relative z-10 mb-[-30px] flex items-end justify-between pl-1 pr-2">
-        <div className="min-w-0 pb-3">
+        <div className="min-w-0 space-y-1 pb-3">
           <p
             style={fontDisplay}
-            className="max-w-[230px] truncate text-[15px] font-extrabold"
+            className="max-w-[230px] truncate text-[15px] font-extrabold leading-tight"
           >
             <span style={{ color: t.color }}>
               {t.name}
             </span>
           </p>
 
-          <p
-            style={fontMono}
-            className="text-[10px] uppercase tracking-[0.08em]"
-          >
-            <span style={{ color: MUTED }}>
-              {t.role || 'Client'}
-            </span>
+          {t.company && <p className="w-fit rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.08em] text-slate-600">
+            {t.company}
+          </p>}
+
+          <p style={fontMono} className="text-[10px] uppercase tracking-[0.08em]">
+            <span style={{ color: MUTED }}>{t.role || 'Client'}</span>
           </p>
         </div>
 
@@ -154,16 +153,11 @@ function TestimonialCard({ t, onToggle }) {
         }}
       >
         {/* Rating */}
-        <div
-          className="mb-3 flex shrink-0 gap-1"
-          style={{ color: GOLD }}
-        >
-          {[...Array(t.rating || 5)].map((_, index) => (
-            <FaStar
-              key={index}
-              className="text-[11px]"
-            />
-          ))}
+        <div className="mb-4 flex shrink-0 items-center justify-between">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Client rating</span>
+          <div className="flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1" style={{ color: GOLD }}>
+            {[...Array(t.rating || 5)].map((_, index) => <FaStar key={index} className="text-[11px]" />)}
+          </div>
         </div>
 
         {/* Review Description */}
@@ -177,16 +171,6 @@ function TestimonialCard({ t, onToggle }) {
             </span>
           </p>
         </div>
-
-        {/* Review Source */}
-        <p
-          style={fontDisplay}
-          className="mt-4 shrink-0 text-[11.5px]"
-        >
-          <span style={{ color: MUTED }}>
-            {t.company || ''}
-          </span>
-        </p>
       </div>
     </div>
   )
