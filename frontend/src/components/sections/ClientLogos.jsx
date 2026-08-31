@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import bekalClub from "../../assets/WhatsApp Image 2026-07-29 at 4.19.10 PM (1).jpeg";
 import forestIndustries from "../../assets/WhatsApp Image 2026-07-29 at 4.19.10 PM (2).jpeg";
 import anaswara from "../../assets/WhatsApp Image 2026-07-29 at 4.19.10 PM.jpeg";
-import jj from "../../assets/WhatsApp Image 2026-07-29 at 4.19.11 PM (1).jpeg";
+import jj from "../../assets/WhatsApp Image 2026-08-28 at 4.01.06 PM.jpeg";
 import jac from "../../assets/WhatsApp Image 2026-07-29 at 4.19.11 PM (2).jpeg";
 import kovax from "../../assets/WhatsApp Image 2026-07-29 at 4.19.11 PM.jpeg";
-import diamond from "../../assets/WhatsApp Image 2026-07-29 at 4.19.12 PM (1).jpeg";
+
 import meron from "../../assets/WhatsApp Image 2026-07-29 at 4.19.12 PM (2).jpeg";
 import milma from "../../assets/WhatsApp Image 2026-07-29 at 4.19.12 PM.jpeg";
 import central from "../../assets/WhatsApp Image 2026-07-29 at 4.19.13 PM.jpeg";
@@ -36,10 +36,7 @@ const clients = [
     name: "kovax",
     image: kovax,
   },
-   {
-    name: "diamond",
-    image: diamond,
-  },
+   
   {
     name: "meron",
     image: meron,
@@ -73,7 +70,7 @@ export default function ClientLogos() {
         className="flex w-max items-center gap-6 px-4"
         animate={{ x: ["0%", "-50%"] }}
         transition={{
-          duration: 25,
+          duration: 55,
           repeat: Infinity,
           ease: "linear",
         }}

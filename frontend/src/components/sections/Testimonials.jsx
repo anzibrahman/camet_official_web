@@ -25,7 +25,7 @@ const accents = [BLUE, NAVY, CYAN]
 const testimonials = [
   {
     name: 'Anuraj P U',
-    company: 'Client Review',
+    company: '',
     role: 'Verified Client',
     text: 'We received professional and dependable Tally support from CAMET IT SOLUTIONS LLP. Their team demonstrated strong technical expertise, prompt responsiveness, and a clear commitment to resolving issues efficiently. The overall support experience was smooth and well managed. We appreciate their service and look forward to continued collaboration. Highly appreciate Athul’s timely assistance and technical knowledge.',
     rating: 5,
@@ -33,7 +33,7 @@ const testimonials = [
   },
   {
     name: 'doc med',
-    company: 'Client Review',
+    company: '',
     role: 'Verified Client',
     text: 'CAMET IT SOLUTIONS helped us migrate our existing Tally.ERP 9 setup to TallyPrime. Good customer support was provided by Adithya.',
     rating: 5,
@@ -49,7 +49,7 @@ const testimonials = [
   },
   {
     name: 'S&A associates',
-    company: 'Client Review',
+    company: '',
     role: 'Verified Client',
     text: 'This is a Tally Support Centre offering customised Tally solutions. My experience with Mr. Riyas’s office has been very positive. Mr. Riyas and his staff are highly supportive, cooperative, and responsive. They provided excellent guidance and timely assistance whenever required.',
     rating: 5,
@@ -57,7 +57,7 @@ const testimonials = [
   },
   {
     name: 'karun saji',
-    company: 'Client Review',
+    company: '',
     role: 'Local Guide',
     text: 'Great service. Responds quickly and provides accurate solutions. Trustworthy support.',
     rating: 5,
@@ -65,7 +65,7 @@ const testimonials = [
   },
   {
     name: 'Akshay KB',
-    company: 'Client Review',
+    company: '',
     role: 'Local Guide',
     text: 'Quick response and effective resolution. Very satisfied with the Tally service.',
     rating: 5,
@@ -73,7 +73,7 @@ const testimonials = [
   },
   {
     name: 'JOJU PULIKKEN',
-    company: 'Client Review',
+    company: '',
     role: 'Local Guide',
     text: 'Very supportive team. They immediately solved our issue on Tally.',
     rating: 5,
@@ -81,7 +81,7 @@ const testimonials = [
   },
   {
     name: 'sathyan thekkat',
-    company: 'Client Review',
+    company: '',
     role: 'Verified Client',
     text: 'Excellent support service is provided by CAMET on every call. Really good experience.',
     rating: 5,
@@ -89,7 +89,7 @@ const testimonials = [
   },
   {
     name: 'GIREESH MB',
-    company: 'Client Review',
+    company: '',
     role: 'Verified Client',
     text: 'CAMET IT SOLUTIONS LLP provides excellent service. They are very supportive and always ready to help. I am very satisfied with their work.',
     rating: 5,
@@ -184,7 +184,7 @@ function TestimonialCard({ t, onToggle }) {
           className="mt-4 shrink-0 text-[11.5px]"
         >
           <span style={{ color: MUTED }}>
-            {t.company || 'Client Review'}
+            {t.company || ''}
           </span>
         </p>
       </div>
@@ -192,7 +192,7 @@ function TestimonialCard({ t, onToggle }) {
   )
 }
 
-function MarqueeRow({ items, duration = 28 }) {
+function MarqueeRow({ items, duration = 48 }) {
   const [isPaused, setIsPaused] = useState(false)
 
   const duplicated = [...items, ...items]
@@ -243,11 +243,11 @@ function Testimonials() {
 
           role:
             review.role ||
-            'Client Review',
+            '',
 
           company:
             review.company ||
-            'Client Review',
+            '',
 
           text:
             review.text ||
@@ -260,7 +260,7 @@ function Testimonials() {
       })
       .catch((error) => {
         console.error(
-          'Could not load client reviews:',
+          'Could not load s:',
           error
         )
       })
@@ -398,7 +398,7 @@ function Testimonials() {
       <div className="relative z-20">
         <MarqueeRow
           items={displayedTestimonials}
-          duration={28}
+          duration={48}
         />
       </div>
     </section>

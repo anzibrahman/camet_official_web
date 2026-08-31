@@ -42,7 +42,7 @@ function LogoStrip() {
         <motion.div
           className="flex items-center gap-2 md:gap-4 w-max"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         >
           {[...logos, ...logos].map((logo, index) => (
             <LogoItem

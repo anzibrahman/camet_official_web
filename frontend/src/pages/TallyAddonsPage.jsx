@@ -1,7 +1,7 @@
 // src/pages/TallyAddonsPage.jsx
 
-import React, { useEffect, useMemo, useState } from "react";
-import { FaChartLine, FaPlayCircle } from "react-icons/fa";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { FaChartLine, FaPlayCircle, FaYoutube } from "react-icons/fa";
 import api from "@/utils/api";
 
 const TALLY_POSTER_URL =
@@ -278,6 +278,7 @@ function TallyAddonsPage() {
   const [activeSlug, setActiveSlug] = useState("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const featuredAddonRef = useRef(null);
 
   useEffect(() => {
     const loadAddons = async () => {
@@ -306,6 +307,7 @@ function TallyAddonsPage() {
         displayOrder: index + 1,
         isActive: true,
         mediaUrl: item.mediaUrl || "",
+        videoUrl: item.mediaUrl || "",
         mediaType: item.mediaType || (isEmbeddedVideo(item.mediaUrl) ? "youtube" : "image"),
       }));
     }
@@ -320,6 +322,7 @@ function TallyAddonsPage() {
           toEmbedUrl(item.video?.url) ||
           item.thumbnail?.url ||
           "",
+        videoUrl: item.video?.url || "",
         mediaType: isEmbeddedVideo(item.video?.url) ? "youtube" : (item.video?.resourceType || item.thumbnail?.resourceType || "image"),
       }))
       .sort((a, b) => a.displayOrder - b.displayOrder);
@@ -360,6 +363,15 @@ function TallyAddonsPage() {
     );
 
     setCurrentIndex(selectedIndex >= 0 ? selectedIndex : 0);
+  };
+
+  const playAddonVideo = (slug) => {
+    const selectedIndex = addons.findIndex((addon) => addon.slug === slug);
+    setActiveSlug("all");
+    setCurrentIndex(selectedIndex >= 0 ? selectedIndex : 0);
+    window.requestAnimationFrame(() => {
+      featuredAddonRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   };
 
   return (
@@ -484,7 +496,7 @@ function TallyAddonsPage() {
         </section>
 
         {/* Featured addon slideshow */}
-      <section className="mt-6 rounded-[28px] border border-white/10 bg-white/5 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-6">
+      <section ref={featuredAddonRef} className="mt-6 scroll-mt-24 rounded-[28px] border border-white/10 bg-white/5 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-6">
   {/* Slider controls */}
   <div className="flex items-center justify-between">
     <button
@@ -641,10 +653,8 @@ function TallyAddonsPage() {
 
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {addons.map((addon, index) => (
-              <button
+              <article
                 key={addon.slug}
-                type="button"
-                onClick={() => selectAddon(addon.slug)}
                 className={`group rounded-[24px] border p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/45 hover:bg-white/10 ${
                   activeSlug === addon.slug
                     ? "border-cyan-400/50 bg-cyan-400/10 shadow-[0_0_0_1px_rgba(103,232,249,0.15)]"
@@ -662,9 +672,17 @@ function TallyAddonsPage() {
                     </h4>
                   </div>
 
-                  <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] uppercase tracking-widest text-white/50">
+                  {addon.videoUrl ? <button
+                    type="button"
+                    onClick={() => playAddonVideo(addon.slug)}
+                    className="inline-flex items-center gap-2 rounded-full border border-red-400/40 bg-red-500/10 px-3 py-1.5 text-[11px] font-medium text-red-100 transition hover:border-red-400 hover:bg-red-500 hover:text-white"
+                    aria-label={`Watch ${addon.title} video`}
+                  >
+                    <FaYoutube className="text-base" aria-hidden="true" />
+                    Watch video
+                  </button> : <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] uppercase tracking-widest text-white/50">
                     Add-on
-                  </div>
+                  </div>}
                 </div>
 
                 <p className="mt-3 line-clamp-2 text-sm leading-6 text-white/60">
@@ -681,7 +699,14 @@ function TallyAddonsPage() {
                     </span>
                   ))}
                 </div>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => selectAddon(addon.slug)}
+                  className="mt-5 text-sm font-medium text-cyan-200 transition hover:text-white"
+                >
+                  View details →
+                </button>
+              </article>
             ))}
           </div>
         </section>
