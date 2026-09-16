@@ -8,9 +8,12 @@ const PHONE_TEL = '9072632603'
 const WHATSAPP_NUMBER = '919072632603'
 const EMAIL = 'Admin@camet.in'
 
-// Registered office address for the map
-const MAP_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.4742857142856!2d76.318956!3d10.063056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08795f5f5f5f5f:0x0!2sA9,+2nd+Floor,+SGR+Tower,+5/215,+Factory+Road,+North+Kalamassery,+Kalamassery,+Kochi,+Kerala+683104!5e0!3m2!1sen!2sin!4v1709886475000!5m2!1sen!2sin'
+const OFFICE_NAME = 'CAMET IT SOLUTIONS LLP'
+const OFFICE_ADDRESS =
+  'A9, 2nd Floor, SGR Tower, 5/215, Factory Road, North Kalamassery, Kalamassery, Kochi, Kerala 683104'
+const MAP_LOCATION = encodeURIComponent(`${OFFICE_NAME}, ${OFFICE_ADDRESS}`)
+const MAP_EMBED_URL = `https://www.google.com/maps?q=${MAP_LOCATION}&output=embed`
+const MAP_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${MAP_LOCATION}`
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -270,7 +273,7 @@ function ContactPage() {
                     {[
                       `Phone: ${PHONE_DISPLAY}`,
                       `Email: ${EMAIL}`,
-                      'Location: A9, 2nd Floor, SGR Tower, Factory Road, North Kalamassery, Kochi - 683104',
+                      `Location: ${OFFICE_ADDRESS}`,
                     ].map((item) => (
                       <motion.div
                         key={item}
@@ -478,7 +481,7 @@ function ContactPage() {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-sky-700 transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-70"
+                          className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-sky-700 transition disabled:cursor-not-allowed disabled:opacity-70"
                         >
                           {isSubmitting ? 'Sending...' : 'Send Message'}
                         </Button>
@@ -493,7 +496,7 @@ function ContactPage() {
           {/* Map + mini contact cards */}
           <div className="mt-8 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
             <motion.div
-              className="relative h-64 overflow-hidden rounded-2xl border border-slate-200 shadow-lg"
+              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg"
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -506,9 +509,24 @@ function ContactPage() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="CAMET IT SOLUTIONS LLP - SGR Tower, Factory Road, North Kalamassery"
-                className="grayscale hover:grayscale-0 transition-all duration-500"
+                title={`${OFFICE_NAME} office location`}
+                className="block h-64 w-full"
               />
+              <div className="border-t border-slate-200 p-5">
+                <h3 className="text-base font-semibold text-slate-900">{OFFICE_NAME}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{OFFICE_ADDRESS}</p>
+                <p className="mt-2 text-sm text-slate-600">
+                  Visit us at office A9 on the 2nd floor of SGR Tower.
+                </p>
+                <a
+                  href={MAP_DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex rounded-md font-semibold text-[#0F766E] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
+                >
+                  Get directions on Google Maps
+                </a>
+              </div>
             </motion.div>
 
             <motion.div

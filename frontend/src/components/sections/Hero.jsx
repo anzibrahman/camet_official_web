@@ -63,7 +63,9 @@ function Hero() {
     heroData?.subtitle ||
     "TallyPrime, ERP, add-ons, and custom software solutions designed to simplify operations and accelerate your business.";
   const primaryCtaText = heroData?.primaryCtaText || "Schedule a Call";
-  const primaryCtaLink = heroData?.primaryCtaLink || "tel:9072632603";
+  const primaryCtaLink = /schedule\s+a\s+call/i.test(primaryCtaText)
+    ? "/contact"
+    : heroData?.primaryCtaLink || "/contact";
   const secondaryCtaText = heroData?.secondaryCtaText || "Chat on WhatsApp";
   const secondaryCtaLink =
     heroData?.secondaryCtaLink ||

@@ -279,6 +279,7 @@ function TallyAddonsPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const featuredAddonRef = useRef(null);
+  const addonDetailsRef = useRef(null);
 
   useEffect(() => {
     const loadAddons = async () => {
@@ -371,6 +372,16 @@ function TallyAddonsPage() {
     setCurrentIndex(selectedIndex >= 0 ? selectedIndex : 0);
     window.requestAnimationFrame(() => {
       featuredAddonRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
+  const viewAddonDetails = (slug) => {
+    selectAddon(slug);
+    window.requestAnimationFrame(() => {
+      addonDetailsRef.current?.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+        block: 'start',
+      });
     });
   };
 
@@ -570,7 +581,7 @@ function TallyAddonsPage() {
       </div>
 
       {/* Add-on details */}
-      <div className="flex flex-col justify-between rounded-[24px] border border-white/10 bg-white/5 p-5 sm:p-6">
+      <div ref={addonDetailsRef} className="flex scroll-mt-24 flex-col justify-between rounded-[24px] border border-white/10 bg-white/5 p-5 sm:p-6">
         <div>
           <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan-200">
             Add-on {currentAddon.displayOrder}
@@ -701,7 +712,7 @@ function TallyAddonsPage() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => selectAddon(addon.slug)}
+                  onClick={() => viewAddonDetails(addon.slug)}
                   className="mt-5 text-sm font-medium text-cyan-200 transition hover:text-white"
                 >
                   View details →

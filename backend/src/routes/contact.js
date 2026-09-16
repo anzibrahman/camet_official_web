@@ -1,16 +1,10 @@
 import express from 'express'
-import nodemailer from 'nodemailer'
+import { createEmailTransport, emailErrorDetails } from '../config/email.js'
 
 const router = express.Router()
 
-// Configure email transporter
-const transporter = nodemailer.createTransport({
-  service: 'gmail', // or your SMTP provider
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-})
+// Initialize lazily so configuration is read after the environment is loaded.
+let transporter
 
 router.post('/contact', async (req, res) => {
   const { name, email, phone, message } = req.body
@@ -24,8 +18,8 @@ router.post('/contact', async (req, res) => {
   }
 
   const mailOptions = {
-    from: `"Contact Form" <${process.env.EMAIL_USER}>`,
-    to: 'admin@camet.in',
+    from: `"Contact Form" <${process.env.EMAIL_USER?.trim()}>`,
+    to: process.env.CONTACT_EMAIL_TO || 'admin@camet.in',
     replyTo: email,
     subject: `New Contact Form: ${name} - ${new Date().toLocaleDateString()}`,
     html: `
@@ -55,13 +49,14 @@ router.post('/contact', async (req, res) => {
   }
 
   try {
+    transporter ||= createEmailTransport()
     await transporter.sendMail(mailOptions)
     res.status(200).json({
       success: true,
-      message: 'Email sent successfully to admin@camet.in'
+      message: 'Email sent successfully'
     })
   } catch (error) {
-    console.error('Email send error:', error)
+    console.error('Contact email failed:', emailErrorDetails(error))
     res.status(500).json({
       success: false,
       message: 'Failed to send email. Please try again later.'

@@ -162,7 +162,7 @@ function Header() {
                 <img
                   src={logo}
                   alt="CAMET IT SOLUTIONS LLP logo"
-                  className="block h-6 w-auto object-contain"
+                  className="block h-7 w-auto object-contain"
                 />
               </div>
             </Link>
