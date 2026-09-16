@@ -17,7 +17,7 @@ function Footer() {
     { label: 'Services', path: '/services' },
     { label: 'Gallery', path: '/gallery' },
     { label: 'Contact', path: '/contact' },
-    { label: 'Admin', path: '/Admin' },
+    // { label: 'Admin', path: '/Admin' },
   ]
 
   const productLinks = [

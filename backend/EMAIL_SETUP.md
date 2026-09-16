@@ -5,6 +5,16 @@ default Gmail transport, EMAIL_PASS must be a Gmail app password for EMAIL_USER.
 Local .env values are not automatically installed on a hosting provider.
 Restart the backend after changing environment variables.
 
+The backend loads backend/.env relative to its source files, even when PM2
+starts it from the repository root or another directory. Host/PM2 environment
+variables take precedence over values in that file. If PM2 holds stale credentials,
+update those variables at their source and restart with --update-env.
+
+After pulling the code on the server, run `node backend/scripts/checkEmail.js`
+from the repository root, then restart the backend PM2 process. The .env file
+is Git-ignored and must already exist on the server or be supplied through the
+hosting environment. Never commit credentials.
+
 For another SMTP provider, also set SMTP_HOST and SMTP_PORT (default 587).
 SMTP_SECURE defaults to true for port 465 and false for other ports, where
 STARTTLS is used when offered. CONTACT_EMAIL_TO defaults to admin@camet.in.
