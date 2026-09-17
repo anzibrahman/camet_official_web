@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FaStar } from 'react-icons/fa'
+import { FaStar, FaTimes } from 'react-icons/fa'
 import api from '@/utils/api'
 
 const fontDisplay = {
@@ -21,6 +21,10 @@ const CYAN = '#0E9BD9'
 const GOLD = '#E8A317'
 
 const accents = [BLUE, NAVY, CYAN]
+
+// How many lines of comment text show before truncating with "···"
+const CLAMP_LINES = 3
+const TEXT_BLOCK_HEIGHT = 66 // px — keeps every card the same height regardless of comment length
 
 const testimonials = [
   {
@@ -100,35 +104,35 @@ const testimonials = [
   color: accents[index % accents.length],
 }))
 
-function TestimonialCard({ t, onToggle }) {
+function TestimonialCard({ t, onToggle, onReadMore }) {
   return (
     <div
       onClick={onToggle}
-      className="testimonial-card relative w-[320px] flex-shrink-0 cursor-pointer pt-8 sm:w-[340px] lg:w-[360px]"
+      className="testimonial-card relative w-[260px] flex-shrink-0 cursor-pointer pt-7 sm:w-[270px] lg:w-[280px]"
     >
       {/* Client Name and Image */}
-      <div className="relative z-10 mb-[-30px] flex items-end justify-between pl-1 pr-2">
-        <div className="min-w-0 space-y-1 pb-3">
+      <div className="relative z-10 mb-[-24px] flex items-end justify-between pl-1 pr-2">
+        <div className="min-w-0 space-y-0.5 pb-2.5">
           <p
             style={fontDisplay}
-            className="max-w-[230px] truncate text-[15px] font-extrabold leading-tight"
+            className="max-w-[170px] truncate text-[13px] font-extrabold leading-tight"
           >
             <span style={{ color: t.color }}>
               {t.name}
             </span>
           </p>
 
-          {t.company && <p className="w-fit rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.08em] text-slate-600">
+          {t.company && <p className="w-fit rounded-full bg-slate-100 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-[0.06em] text-slate-600">
             {t.company}
           </p>}
 
-          <p style={fontMono} className="text-[10px] uppercase tracking-[0.08em]">
+          <p style={fontMono} className="text-[9px] uppercase tracking-[0.06em]">
             <span style={{ color: MUTED }}>{t.role || 'Client'}</span>
           </p>
         </div>
 
         <div
-          className="h-16 w-16 shrink-0 overflow-hidden rounded-full ring-4 ring-white shadow-[0_10px_20px_-8px_rgba(11,31,58,0.35)]"
+          className="h-12 w-12 shrink-0 overflow-hidden rounded-full ring-4 ring-white shadow-[0_10px_20px_-8px_rgba(11,31,58,0.35)]"
           style={{
             border: `2px solid ${t.color}`,
           }}
@@ -144,39 +148,62 @@ function TestimonialCard({ t, onToggle }) {
         </div>
       </div>
 
-      {/* Testimonial Card */}
+      {/* Testimonial Card — fixed height so every card matches regardless of comment length */}
       <div
-        className="relative flex h-[310px] flex-col rounded-2xl bg-white p-6 pt-11 transition-transform duration-300 hover:-translate-y-1"
+        className="relative flex h-[210px] flex-col rounded-2xl bg-white p-4 pt-9 transition-transform duration-300 hover:-translate-y-1"
         style={{
           border: '1px solid rgba(11,31,58,0.08)',
           boxShadow: '0 18px 40px -28px rgba(11,31,58,0.2)',
         }}
       >
         {/* Rating */}
-        <div className="mb-4 flex shrink-0 items-center justify-between">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Client rating</span>
-          <div className="flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1" style={{ color: GOLD }}>
-            {[...Array(t.rating || 5)].map((_, index) => <FaStar key={index} className="text-[11px]" />)}
-          </div>
+        <div className="mb-2.5 flex shrink-0 items-center gap-1" style={{ color: GOLD }}>
+          {[...Array(t.rating || 5)].map((_, index) => <FaStar key={index} className="text-[10px]" />)}
         </div>
 
-        {/* Review Description */}
-        <div className="testimonial-scroll flex-1 overflow-y-auto pr-1">
+        {/* Review Description — clamped to a fixed number of lines, same height every time */}
+        <div className="relative flex-1" style={{ height: TEXT_BLOCK_HEIGHT }}>
           <p
-            style={fontDisplay}
-            className="text-[13.5px] font-normal leading-relaxed"
+            style={{
+              ...fontDisplay,
+              display: '-webkit-box',
+              WebkitLineClamp: CLAMP_LINES,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+            className="text-[12px] font-normal leading-relaxed"
           >
             <span style={{ color: INK }}>
               {t.text}
             </span>
           </p>
         </div>
+
+        {/* Three-dot "read more" trigger — opens the full comment */}
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation()
+            onReadMore(t)
+          }}
+          aria-label={`Read full comment from ${t.name}`}
+          className="mt-1.5 flex shrink-0 items-center gap-1 self-start text-[11px] font-semibold"
+          style={{ color: BLUE }}
+        >
+          <span
+            className="flex h-5 w-5 items-center justify-center rounded-full border"
+            style={{ borderColor: 'rgba(11,31,58,0.15)', color: MUTED }}
+          >
+            <span style={{ fontSize: '12px', lineHeight: '8px', letterSpacing: '1px' }}>&#8226;&#8226;&#8226;</span>
+          </span>
+          Read more
+        </button>
       </div>
     </div>
   )
 }
 
-function MarqueeRow({ items, duration = 48 }) {
+function MarqueeRow({ items, duration = 48, onReadMore }) {
   const [isPaused, setIsPaused] = useState(false)
 
   const duplicated = [...items, ...items]
@@ -199,6 +226,7 @@ function MarqueeRow({ items, duration = 48 }) {
             key={`${testimonial.name}-${index}`}
             t={testimonial}
             onToggle={togglePause}
+            onReadMore={onReadMore}
           />
         ))}
       </div>
@@ -206,8 +234,66 @@ function MarqueeRow({ items, duration = 48 }) {
   )
 }
 
+function ReadMoreModal({ testimonial, onClose }) {
+  if (!testimonial) return null
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0B1F3A]/50 px-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        onClick={(event) => event.stopPropagation()}
+        className="relative w-full max-w-lg rounded-2xl bg-white p-7 shadow-2xl"
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+        >
+          <FaTimes className="text-[13px]" />
+        </button>
+
+        <div className="mb-4 flex items-center gap-3 pr-8">
+          <div
+            className="h-12 w-12 shrink-0 overflow-hidden rounded-full"
+            style={{ border: `2px solid ${testimonial.color}` }}
+          >
+            <img
+              src={testimonial.photo || 'https://placehold.co/200x200/e2e8f0/475569?text=Client'}
+              alt={testimonial.name}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="min-w-0">
+            <p style={fontDisplay} className="truncate text-[15px] font-extrabold" >
+              <span style={{ color: testimonial.color }}>{testimonial.name}</span>
+            </p>
+            <p style={fontMono} className="text-[10px] uppercase tracking-[0.08em]">
+              <span style={{ color: MUTED }}>{testimonial.role || 'Client'}</span>
+              {testimonial.company ? <span style={{ color: MUTED }}> · {testimonial.company}</span> : null}
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-4 flex items-center gap-1" style={{ color: GOLD }}>
+          {[...Array(testimonial.rating || 5)].map((_, index) => (
+            <FaStar key={index} className="text-[12px]" />
+          ))}
+        </div>
+
+        <p style={fontDisplay} className="max-h-[50vh] overflow-y-auto text-[14px] font-normal leading-relaxed" >
+          <span style={{ color: INK }}>{testimonial.text}</span>
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function Testimonials() {
   const [databaseReviews, setDatabaseReviews] = useState([])
+  const [activeTestimonial, setActiveTestimonial] = useState(null)
 
   useEffect(() => {
     api
@@ -383,8 +469,11 @@ function Testimonials() {
         <MarqueeRow
           items={displayedTestimonials}
           duration={48}
+          onReadMore={setActiveTestimonial}
         />
       </div>
+
+      <ReadMoreModal testimonial={activeTestimonial} onClose={() => setActiveTestimonial(null)} />
     </section>
   )
 }

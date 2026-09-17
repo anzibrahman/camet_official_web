@@ -45,7 +45,7 @@ export default function ContentManager() {
         const url = payload.videoUrl?.trim()
         delete payload.videoUrl
         if (url) payload.video = { url, resourceType: 'video' }
-        else if (!editing) payload.video = null
+        else payload.video = null
       }
       if (media) {
         const uploaded = await uploadMediaToCloudinary(media)
