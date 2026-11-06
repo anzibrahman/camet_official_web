@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Button from '../components/common/Button'
 import api from '@/utils/api'
+import ComplaintRegistration from '../components/ComplaintRegistration'
 
 const PHONE_DISPLAY = '9072632603'
 const PHONE_TEL = '9072632603'
@@ -303,8 +304,9 @@ function ContactPage() {
 
               {/* Right form - neutral background, no pink */}
               <motion.div
+                id="contact-form"
                 variants={fadeRight}
-                className="flex items-center justify-center bg-white p-4 sm:p-5 md:p-7"
+                className="flex scroll-mt-24 items-center justify-center bg-white p-4 sm:p-5 md:p-7"
               >
                 <motion.div
                   whileHover={{ y: -4 }}
@@ -488,6 +490,7 @@ function ContactPage() {
                       </motion.div>
                     </motion.div>
                   </motion.form>
+                  <ComplaintRegistration />
                 </motion.div>
               </motion.div>
             </div>
