@@ -1,3 +1,4 @@
+import BookServiceButton from '@/components/common/BookServiceButton'
 import { useEffect, useRef, useState } from 'react'
 import { Navigate, Link, useParams } from 'react-router-dom'
 import Header from '@/components/common/Header'
@@ -216,14 +217,13 @@ function SolutionSpotlightCard({ solution }) {
             </div>
           </div>
 
-          <Link
-            to="/contact"
+          <BookServiceButton
             className="group/btn relative mt-1 inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-[0_0_0_rgba(34,211,238,0)] transition-all duration-300 hover:shadow-[0_0_28px_rgba(34,211,238,0.55)]"
           >
             <span className="shine-sweep" />
             Book a Service
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5" />
-          </Link>
+          </BookServiceButton>
         </div>
       </div>
     </aside>
@@ -407,13 +407,12 @@ function SolutionDetails() {
                   </p>
 
                   <div className="mt-6 flex flex-wrap gap-2.5">
-                    <Link
-                      to="/contact"
+                    <BookServiceButton
                       className="group/btn relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 px-5 py-2.5 text-sm font-semibold text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(34,211,238,0.45)]"
                     >
                       <span className="shine-sweep" />
                       Book a Service
-                    </Link>
+                    </BookServiceButton>
 
                     <Link
                       to="/contact"

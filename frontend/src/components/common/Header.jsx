@@ -1,3 +1,4 @@
+import BookServiceButton from '@/components/common/BookServiceButton'
 import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import logo from '../../assets/White_Logo_HD.png'
@@ -256,13 +257,12 @@ function Header() {
 
           <div className="ml-auto flex items-center gap-3">
             <div className="hidden items-center lg:flex">
-              <Link
-                to="/contact"
+              <BookServiceButton
                 className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-2 text-[12px] text-white backdrop-blur-md transition-all hover:bg-white/20"
                 style={headerButtonFont}
               >
                 Book a Service
-              </Link>
+              </BookServiceButton>
             </div>
 
             <button
@@ -434,13 +434,12 @@ function Header() {
                 Contact
               </Link>
 
-              <Link
-                to="/contact"
+              <BookServiceButton
                 className="block rounded-2xl border border-black/10 bg-slate-900 px-4 py-3 text-center text-[12px] text-white"
                 style={headerButtonFont}
               >
                 Book a Service
-              </Link>
+              </BookServiceButton>
             </div>
           </motion.div>
         )}

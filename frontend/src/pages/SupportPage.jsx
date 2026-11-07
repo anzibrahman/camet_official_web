@@ -1,5 +1,5 @@
+import BookServiceButton from '@/components/common/BookServiceButton'
 import { motion } from 'framer-motion'
-import Button from '../components/common/Button'
 
 function SupportPage() {
   const supportItems = [
@@ -60,9 +60,9 @@ function SupportPage() {
           <h2 className="text-3xl font-bold text-slate-900 mb-4">Need immediate help?</h2>
           <p className="text-slate-600 mb-2">Phone: +91 9072632601</p>
           <p className="text-slate-600 mb-8">Email: admin@camet.in</p>
-          <Button to="/contact" className="bg-red-600 text-white hover:bg-red-700 px-8 py-3 rounded-md font-semibold">
+          <BookServiceButton className="bg-red-600 text-white hover:bg-red-700 px-8 py-3 rounded-md font-semibold">
             Book a Service
-          </Button>
+          </BookServiceButton>
         </div>
       </section>
     </div>
