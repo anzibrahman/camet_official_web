@@ -29,7 +29,7 @@ test('enquiry emails website mailbox and never calls CRM', async () => {
     sendMail: async mail => { mails.push(mail); return { accepted: [mail.to] } },
   })
   await withServer(router, async base => {
-    const body = { licenceNumber: '123', contactNumber: '9876543210', callNote: 'Tally support', description: 'Please call me about this issue.' }
+    const body = { licenceNumber: '123', companyName: 'Example Company', contactNumber: '9876543210', callNote: 'Tally support', description: 'Please call me about this issue.' }
     assert.equal((await post(base, 'enquiry', { ...body, description: '' })).status, 400)
     assert.equal(mails.length, 0)
     const response = await post(base, 'enquiry', body)

@@ -25,8 +25,8 @@ export function createComplaintRouter({ request = fetch, env = process.env, send
 
   // Enquiries are email-only and never call the CRM complaint/telecalling API.
   router.post('/enquiry', async (req, res) => {
-    const { licenceNumber, contactNumber, callNote, description } = req.body || {}
-    if (typeof licenceNumber !== 'string' || !/^\d{1,15}$/.test(licenceNumber) ||
+    const { licenceNumber, companyName = '', contactNumber, callNote, description } = req.body || {}
+    if (typeof companyName !== 'string' || companyName.length > 200 || typeof licenceNumber !== 'string' || !/^\d{1,15}$/.test(licenceNumber) ||
         typeof contactNumber !== 'string' || !/^[+\d\s()-]{7,20}$/.test(contactNumber) || contactNumber.replace(/\D/g, '').length < 7 ||
         typeof callNote !== 'string' || !callNote.trim() || callNote.length > 200 ||
         typeof description !== 'string' || description.trim().length < 10 || description.length > 5000) {
@@ -37,7 +37,7 @@ export function createComplaintRouter({ request = fetch, env = process.env, send
         from: `"Website Enquiry" <${env.EMAIL_USER?.trim()}>`,
         to: env.CONTACT_EMAIL_TO || 'admin@camet.in',
         subject: 'Website enquiry about an unregistered licence',
-        text: `A visitor would like to make an enquiry about the following:\n\nLicence number: ${licenceNumber}\nContact number: ${contactNumber.trim()}\nCall note: ${callNote.trim()}\n\nDescription:\n${description.trim()}\n\nPlease contact this visitor regarding their enquiry.`,
+        text: `A visitor would like to make an enquiry about the following:\n\nLicence number: ${licenceNumber}\nCompany name: ${companyName.trim() || 'Not provided'}\nContact number: ${contactNumber.trim()}\nCall note: ${callNote.trim()}\n\nDescription:\n${description.trim()}\n\nPlease contact this visitor regarding their enquiry.`,
       }
       const result = await (sendMail ? sendMail(mail) : createEmailTransport(env).sendMail(mail))
       if (result?.rejected?.length) throw new Error('Email rejected')
@@ -59,6 +59,10 @@ export function createComplaintRouter({ request = fetch, env = process.env, send
       }[action]
       const body = Object.fromEntries(fields.map(field => [field, req.body?.[field]]))
       if (Object.values(body).some(value => typeof value !== 'string' || value.length > 5000)) return res.status(400).json({ success: false, message: 'Please complete all the required fields.' })
+      if (action === 'submit' && req.body?.companyName !== undefined) {
+        if (typeof req.body.companyName !== 'string' || req.body.companyName.length > 200) return res.status(400).json({ success: false, message: 'Company name must be at most 200 characters.' })
+        body.companyName = req.body.companyName.trim()
+      }
       try {
         const response = await request(`${base}/${action}`, {
           method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Camet-Complaint-Key': key },

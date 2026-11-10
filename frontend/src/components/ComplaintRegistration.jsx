@@ -18,7 +18,7 @@ export default function ComplaintRegistration({ embedded = false, service = fals
   const [session, setSession] = useState({})
   const [otp, setOtp] = useState('')
   const [notes, setNotes] = useState([])
-  const [details, setDetails] = useState({ contactNumber: '', callNoteId: '', callNote: '', description: '' })
+  const [details, setDetails] = useState({ companyName: '', contactNumber: '', callNoteId: '', callNote: '', description: '' })
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -69,7 +69,7 @@ export default function ComplaintRegistration({ embedded = false, service = fals
     setSession({})
     setOtp('')
     setNotes([])
-    setDetails({ contactNumber: '', callNoteId: '', callNote: '', description: '' })
+    setDetails({ companyName: '', contactNumber: '', callNoteId: '', callNote: '', description: '' })
     setReceipt(null)
     setError('')
     setMessage('')
@@ -116,7 +116,7 @@ export default function ComplaintRegistration({ embedded = false, service = fals
   function submit(e) {
     e?.preventDefault()
     if (step === 'enquiry') {
-      run('enquiry', { licenceNumber: licenceNumber.trim(), contactNumber: details.contactNumber, callNote: details.callNote, description: details.description }, data => {
+      run('enquiry', { licenceNumber: licenceNumber.trim(), companyName: details.companyName.trim(), contactNumber: details.contactNumber, callNote: details.callNote, description: details.description }, data => {
         setReceipt(data)
         setStep('success')
       })
@@ -162,6 +162,9 @@ export default function ComplaintRegistration({ embedded = false, service = fals
           </form>}
 
           {['details', 'enquiry'].includes(step) && <form onSubmit={submit} className="mt-4 space-y-4">
+            <label htmlFor={`${formId}-company`} className="block text-sm font-medium text-slate-800">Company name
+              <input id={`${formId}-company`} autoComplete="organization" maxLength={200} value={details.companyName} onChange={e => setDetails(prev => ({ ...prev, companyName: e.target.value }))} disabled={busy} className={inputClass} placeholder="Enter your company name" />
+            </label>
             <label htmlFor={`${formId}-phone`} className="block text-sm font-medium text-slate-800">Contact number <span aria-hidden="true">*</span>
               <input id={`${formId}-phone`} type="tel" autoComplete="tel" required minLength={7} maxLength={20} value={details.contactNumber} onChange={e => setDetails(prev => ({ ...prev, contactNumber: e.target.value }))} disabled={busy} className={inputClass} />
             </label>

@@ -126,7 +126,7 @@ export function createWebsiteComplaintController({ mail = sendComplaintMail } = 
     if (!lease) return challenge.notificationStatus === "sent";
     try {
       const note = await CallNote.findById(body.callNoteId).lean();
-      await mail({ to: process.env.COMPLAINT_NOTIFY_EMAIL || "Admin@camet.in", subject: `Website complaint raised - ${reference}`, text: `A complaint was raised on the Camet website.\n\nReference: ${reference}\nCustomer: ${String(customer.customerName || "Customer")}\nLicence: ${challenge.licenceNumber}\nRegistered email: ${challenge.email}\nContact number: ${body.contactNumber}\nCall note: ${note?.callNotes || ""}\nDescription: ${body.description}\n\nThe complaint is saved in CRM call registration with pending status.` });
+      await mail({ to: process.env.COMPLAINT_NOTIFY_EMAIL || "Admin@camet.in", subject: `Website complaint raised - ${reference}`, text: `A complaint was raised on the Camet website.\n\nReference: ${reference}\nCustomer: ${String(customer.customerName || "Customer")}\nLicence: ${challenge.licenceNumber}\nRegistered email: ${challenge.email}\nCompany name: ${body.companyName || "Not provided"}\nContact number: ${body.contactNumber}\nCall note: ${note?.callNotes || ""}\nDescription: ${body.description}\n\nThe complaint is saved in CRM call registration with pending status.` });
       await ComplaintVerification.updateOne({ _id: challenge._id }, { $set: { notificationStatus: "sent" } });
       return true;
     } catch (error) {
@@ -143,6 +143,8 @@ export function createWebsiteComplaintController({ mail = sendComplaintMail } = 
     if (!customer || customer.email !== challenge.email) throw fail(401, "Customer details changed. Please start again.");
     let payload = challenge.submission;
     if (!payload) {
+      if (req.body.companyName !== undefined && (typeof req.body.companyName !== "string" || req.body.companyName.length > 200)) throw fail(400, "Company name must be at most 200 characters.");
+      const companyName = clean(req.body.companyName);
       const contactNumber = clean(req.body.contactNumber);
       const description = clean(req.body.description);
       const callNoteId = clean(req.body.callNoteId);
@@ -151,7 +153,7 @@ export function createWebsiteComplaintController({ mail = sendComplaintMail } = 
       if (!/^[a-f0-9]{24}$/i.test(callNoteId) || !await CallNote.exists({ _id: callNoteId })) throw fail(400, "Select a valid call note.");
       // Persist the first submitted payload. A retry cannot change a saved complaint.
       const locked = await ComplaintVerification.findOneAndUpdate({ _id: challenge._id, submission: null }, {
-        $set: { submission: { contactNumber, description, callNoteId } }
+        $set: { submission: { companyName, contactNumber, description, callNoteId } }
       }, { new: true });
       payload = locked?.submission || (await ComplaintVerification.findById(challenge._id).lean()).submission;
     }
@@ -167,7 +169,7 @@ export function createWebsiteComplaintController({ mail = sendComplaintMail } = 
       // Website complaints deliberately omit product. It is already optional in the schema.
       license: challenge.licenceNumber, branchName: [branch.branchName],
       timedata: { startTime, token: reference, duration: "0", time: "00:00:00" },
-      formdata: { incomingNumber: payload.contactNumber, token: reference, description: `[Website complaint]\n${payload.description}`, callnote: payload.callNoteId, solution: "", status: "pending", attendedBy: [], completedBy: [] }
+      formdata: { incomingNumber: payload.contactNumber, token: reference, description: `[Website complaint]\n${payload.companyName ? `Company name: ${payload.companyName}\n` : ""}${payload.description}`, callnote: payload.callNoteId, solution: "", status: "pending", attendedBy: [], completedBy: [] }
     } } }, { runValidators: true });
     await Customer.updateOne({ _id: customer._id, callregistration: null }, { $set: { callregistration: parentId } });
     await ComplaintVerification.updateOne({ _id: challenge._id }, { $set: { submittedAt: challenge.submittedAt || new Date() } });

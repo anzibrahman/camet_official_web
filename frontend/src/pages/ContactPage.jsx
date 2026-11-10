@@ -7,7 +7,7 @@ import ComplaintRegistration from '../components/ComplaintRegistration'
 const PHONE_DISPLAY = '9072632603'
 const PHONE_TEL = '9072632603'
 const WHATSAPP_NUMBER = '919072632603'
-const EMAIL = 'Admin@camet.in'
+const EMAIL = 'soluions@camet.in'
 
 const OFFICE_NAME = 'CAMET IT SOLUTIONS LLP'
 const OFFICE_ADDRESS =
