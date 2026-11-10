@@ -10,10 +10,10 @@ function isMissingLicence(action, status, data) {
       /^No customer found with this licence number\b/i.test(data.message)))
 }
 
-export default function ComplaintRegistration({ embedded = false, service = false }) {
+export default function ComplaintRegistration({ embedded = false, service = false, initialLicenceNumber = '' }) {
   const formId = useId()
   const [open, setOpen] = useState(embedded)
-  const [licenceNumber, setLicenceNumber] = useState('')
+  const [licenceNumber, setLicenceNumber] = useState(() => /^[0-9]{1,15}$/.test(initialLicenceNumber) ? initialLicenceNumber : '')
   const [step, setStep] = useState('licence')
   const [session, setSession] = useState({})
   const [otp, setOtp] = useState('')
